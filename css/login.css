@@ -1,0 +1,837 @@
+   /* =====================================================
+           LOGIN PAGE
+        ===================================================== */
+
+        :root {
+
+            --ng-blue: #00c6ff;
+            --ng-cyan: #00eaff;
+            --ng-purple: #7b2cff;
+            --ng-violet: #9b4dff;
+
+        }
+
+
+        body {
+
+            min-height: 100vh;
+
+            background:
+                radial-gradient(
+                    circle at 15% 20%,
+                    rgba(0,198,255,.14),
+                    transparent 30%
+                ),
+
+                radial-gradient(
+                    circle at 85% 25%,
+                    rgba(123,44,255,.15),
+                    transparent 30%
+                ),
+
+                radial-gradient(
+                    circle at 50% 100%,
+                    rgba(0,234,255,.08),
+                    transparent 35%
+                ),
+
+                #050509;
+
+            color: white;
+
+            overflow-x: hidden;
+
+        }
+
+
+        /* =====================================================
+           GRID BACKGROUND
+        ===================================================== */
+
+        body::before {
+
+            content: "";
+
+            position: fixed;
+
+            inset: 0;
+
+            pointer-events: none;
+
+            background-image:
+
+                linear-gradient(
+                    rgba(255,255,255,.025) 1px,
+                    transparent 1px
+                ),
+
+                linear-gradient(
+                    90deg,
+                    rgba(255,255,255,.025) 1px,
+                    transparent 1px
+                );
+
+            background-size: 45px 45px;
+
+            z-index: -1;
+
+        }
+
+
+        /* =====================================================
+           NAVBAR
+        ===================================================== */
+
+        .login-navbar {
+
+            background:
+                rgba(5,5,10,.85) !important;
+
+            backdrop-filter:
+                blur(18px);
+
+            -webkit-backdrop-filter:
+                blur(18px);
+
+            border-bottom:
+                1px solid
+                rgba(255,255,255,.08);
+
+            box-shadow:
+                0 10px 35px
+                rgba(0,0,0,.3);
+
+        }
+
+
+        .login-navbar .navbar-brand {
+
+            color: white !important;
+
+            font-weight: 900;
+
+            font-size: 22px;
+
+            letter-spacing: 1px;
+
+        }
+
+
+        .login-navbar .navbar-brand i {
+
+            color: var(--ng-cyan);
+
+            filter:
+                drop-shadow(
+                    0 0 8px
+                    rgba(0,234,255,.7)
+                );
+
+        }
+
+
+        .login-navbar .nav-link {
+
+            color:
+                rgba(255,255,255,.7) !important;
+
+            font-weight: 600;
+
+            transition: .25s;
+
+        }
+
+
+        .login-navbar .nav-link:hover {
+
+            color: white !important;
+
+            text-shadow:
+                0 0 12px
+                rgba(0,198,255,.7);
+
+        }
+
+
+        /* =====================================================
+           LOGIN AREA
+        ===================================================== */
+
+        .login-page {
+
+            min-height:
+                calc(100vh - 70px);
+
+            display: flex;
+
+            align-items: center;
+
+            padding:
+                45px 0 65px;
+
+            position: relative;
+
+        }
+
+
+        .login-page::before {
+
+            content: "";
+
+            position: absolute;
+
+            width: 280px;
+
+            height: 280px;
+
+            border-radius: 50%;
+
+            background:
+                var(--ng-blue);
+
+            filter: blur(130px);
+
+            opacity: .13;
+
+            left: -120px;
+
+            top: 100px;
+
+        }
+
+
+        .login-page::after {
+
+            content: "";
+
+            position: absolute;
+
+            width: 300px;
+
+            height: 300px;
+
+            border-radius: 50%;
+
+            background:
+                var(--ng-purple);
+
+            filter: blur(140px);
+
+            opacity: .15;
+
+            right: -120px;
+
+            bottom: 50px;
+
+        }
+
+
+        /* =====================================================
+           LOGIN CARD
+        ===================================================== */
+
+        .login-card {
+
+            position: relative;
+
+            overflow: hidden;
+
+            max-width: 430px;
+
+            margin: auto;
+
+            border-radius: 28px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(18,18,27,.97),
+                    rgba(7,7,12,.98)
+                );
+
+            border:
+                1px solid
+                rgba(255,255,255,.10);
+
+            box-shadow:
+
+                0 35px 100px
+                rgba(0,0,0,.6),
+
+                0 0 55px
+                rgba(0,198,255,.08);
+
+            transition: .35s;
+
+        }
+
+
+        .login-card:hover {
+
+            transform:
+                translateY(-4px);
+
+            box-shadow:
+
+                0 40px 110px
+                rgba(0,0,0,.65),
+
+                0 0 75px
+                rgba(0,198,255,.12);
+
+        }
+
+
+        .login-card::before {
+
+            content: "";
+
+            position: absolute;
+
+            width: 300px;
+
+            height: 300px;
+
+            border-radius: 50%;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    var(--ng-blue),
+                    var(--ng-purple)
+                );
+
+            filter: blur(110px);
+
+            opacity: .12;
+
+            right: -130px;
+
+            top: -150px;
+
+        }
+
+
+        .login-card-body {
+
+            position: relative;
+
+            z-index: 2;
+
+            padding:
+                38px 34px 30px;
+
+        }
+
+
+        /* =====================================================
+           LOGO
+        ===================================================== */
+
+        .login-logo {
+
+            width: 68px;
+
+            height: 68px;
+
+            margin: 0 auto 16px;
+
+            border-radius: 19px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #00c6ff,
+                    #5865f2,
+                    #7b2cff
+                );
+
+            color: white;
+
+            font-size: 30px;
+
+            font-weight: 900;
+
+            box-shadow:
+
+                0 0 30px
+                rgba(0,198,255,.35),
+
+                0 0 55px
+                rgba(123,44,255,.20);
+
+            animation:
+                loginLogoFloat 3s ease-in-out infinite;
+
+        }
+
+
+        @keyframes loginLogoFloat {
+
+            0%,
+            100% {
+
+                transform:
+                    translateY(0);
+
+            }
+
+            50% {
+
+                transform:
+                    translateY(-5px);
+
+            }
+
+        }
+
+
+        /* =====================================================
+           TITLE
+        ===================================================== */
+
+        .login-title {
+
+            font-size: 30px;
+
+            font-weight: 900;
+
+            color: white;
+
+            margin-bottom: 5px;
+
+        }
+
+
+        .login-title span {
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #00c6ff,
+                    #8b5cf6,
+                    #c04cff
+                );
+
+            -webkit-background-clip: text;
+
+            -webkit-text-fill-color: transparent;
+
+        }
+
+
+        .login-subtitle {
+
+            color:
+                rgba(255,255,255,.48);
+
+            font-size: 13px;
+
+            margin-bottom: 27px;
+
+        }
+
+
+        /* =====================================================
+           LABEL
+        ===================================================== */
+
+        .login-card .form-label {
+
+            color:
+                rgba(255,255,255,.82);
+
+            font-size: 13px;
+
+            font-weight: 700;
+
+            margin-bottom: 7px;
+
+        }
+
+
+        .login-card .form-label i {
+
+            color:
+                var(--ng-cyan);
+
+            margin-right: 4px;
+
+        }
+
+
+        /* =====================================================
+           INPUT
+        ===================================================== */
+
+        .login-card .form-control {
+
+            min-height: 51px;
+
+            color: white;
+
+            background:
+                rgba(255,255,255,.045);
+
+            border:
+                1px solid
+                rgba(255,255,255,.12);
+
+            border-radius: 13px;
+
+            transition: .25s;
+
+        }
+
+
+        .login-card .form-control::placeholder {
+
+            color:
+                rgba(255,255,255,.30);
+
+        }
+
+
+        .login-card .form-control:focus {
+
+            color: white;
+
+            background:
+                rgba(255,255,255,.07);
+
+            border-color:
+                var(--ng-blue);
+
+            box-shadow:
+
+                0 0 0 3px
+                rgba(0,198,255,.10),
+
+                0 0 22px
+                rgba(0,198,255,.10);
+
+        }
+
+
+        /* =====================================================
+           PASSWORD
+        ===================================================== */
+
+        .login-password-group .form-control {
+
+            border-radius:
+                13px 0 0 13px;
+
+        }
+
+
+        .login-password-group .btn {
+
+            width: 52px;
+
+            border-radius:
+                0 13px 13px 0;
+
+            background:
+                rgba(255,255,255,.045);
+
+            border:
+                1px solid
+                rgba(255,255,255,.12);
+
+            color:
+                rgba(255,255,255,.55);
+
+        }
+
+
+        .login-password-group .btn:hover {
+
+            color: white;
+
+            background:
+                rgba(0,198,255,.12);
+
+            border-color:
+                var(--ng-blue);
+
+        }
+
+
+        /* =====================================================
+           REMEMBER
+        ===================================================== */
+
+        .login-remember {
+
+            color:
+                rgba(255,255,255,.55);
+
+            font-size: 12px;
+
+        }
+
+
+        .login-remember input {
+
+            accent-color:
+                var(--ng-blue);
+
+        }
+
+
+        /* =====================================================
+           LOGIN BUTTON
+        ===================================================== */
+
+        .login-submit {
+
+            min-height: 52px;
+
+            border: none;
+
+            border-radius: 14px;
+
+            color: white;
+
+            font-weight: 800;
+
+            background:
+                linear-gradient(
+                    100deg,
+                    #00aeea,
+                    #5865f2,
+                    #8b2cff
+                );
+
+            box-shadow:
+
+                0 12px 35px
+                rgba(0,198,255,.22);
+
+            transition: .25s;
+
+        }
+
+
+        .login-submit:hover {
+
+            color: white;
+
+            transform:
+                translateY(-3px);
+
+            box-shadow:
+
+                0 17px 45px
+                rgba(0,198,255,.30),
+
+                0 0 35px
+                rgba(123,44,255,.20);
+
+        }
+
+
+        /* =====================================================
+           REGISTER LINK
+        ===================================================== */
+
+        .register-link {
+
+            color:
+                var(--ng-cyan);
+
+            font-weight: 800;
+
+            text-decoration: none;
+
+        }
+
+
+        .register-link:hover {
+
+            color: white;
+
+            text-shadow:
+                0 0 12px
+                rgba(0,234,255,.7);
+
+        }
+
+
+        /* =====================================================
+           SECURITY
+        ===================================================== */
+
+        .login-security {
+
+            border-top:
+                1px solid
+                rgba(255,255,255,.08);
+
+            margin-top: 22px;
+
+            padding-top: 17px;
+
+            text-align: center;
+
+            font-size: 11px;
+
+            color:
+                rgba(255,255,255,.30);
+
+        }
+
+
+        .login-security i {
+
+            color:
+                var(--ng-cyan);
+
+        }
+
+
+        /* =====================================================
+           FOOTER
+        ===================================================== */
+
+        .login-footer {
+
+            border-top:
+                1px solid
+                rgba(255,255,255,.06);
+
+            background:
+                rgba(0,0,0,.25);
+
+            color:
+                rgba(255,255,255,.30);
+
+        }
+
+
+        /* =====================================================
+           MOBILE
+        ===================================================== */
+
+        @media (max-width: 576px) {
+
+            .login-page {
+
+                padding:
+                    30px 12px 45px;
+
+            }
+
+            .login-card {
+
+                border-radius: 23px;
+
+            }
+
+            .login-card-body {
+
+                padding:
+                    30px 21px 25px;
+
+            }
+
+            .login-title {
+
+                font-size: 27px;
+
+            }
+
+        }
+
+/* =====================================================
+   MOBILE TOUCH / CLICK FIX
+   แก้ปัญหาปุ่ม Login / สมัครสมาชิกกดไม่ได้บนมือถือ
+===================================================== */
+
+/* ทำให้พื้นที่ Login อยู่เหนือ Background Effect */
+.login-page {
+    isolation: isolate;
+}
+
+/* Background glow ห้ามรับการแตะ */
+.login-page::before,
+.login-page::after,
+.login-card::before {
+    pointer-events: none !important;
+}
+
+/* Card และเนื้อหาต้องอยู่เหนือ Effect */
+.login-card {
+    position: relative;
+    z-index: 10;
+}
+
+.login-card-body {
+    position: relative;
+    z-index: 20;
+}
+
+/* ปุ่มและ Link ต้องรับ Touch */
+.login-submit,
+.register-link,
+.login-password-group .btn,
+.login-remember,
+.login-card button,
+.login-card a {
+    position: relative;
+    z-index: 30;
+    pointer-events: auto !important;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* Login button */
+.login-submit {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    cursor: pointer;
+}
+
+/* Register link */
+.register-link {
+    display: inline-block;
+    cursor: pointer;
+}
+
+/* ป้องกัน animation ทำให้ layer เพี้ยนบนมือถือ */
+@media (max-width: 576px) {
+
+    .login-card:hover {
+        transform: none;
+    }
+
+    .login-submit:hover {
+        transform: none;
+    }
+
+    .login-submit:active {
+        transform: scale(.98);
+    }
+
+    .register-link:active {
+        opacity: .75;
+    }
+
+    .login-card {
+        z-index: 10;
+        overflow: hidden;
+    }
+
+    .login-card-body {
+        z-index: 20;
+    }
+}

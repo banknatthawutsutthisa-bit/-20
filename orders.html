@@ -1,0 +1,1348 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>จัดการคำสั่งซื้อ | NeonGear Admin</title>
+
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        rel="stylesheet">
+
+    <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <link
+        rel="stylesheet"
+        href="css/orders.css">
+
+</head>
+
+<body>
+
+
+<!-- =================================================
+     NAVBAR
+================================================== -->
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+
+    <div class="container">
+
+        <a
+            class="navbar-brand fw-bold"
+            href="index.html">
+
+            <i
+                class="bi bi-lightning-charge-fill text-info">
+            </i>
+
+            NeonGear
+
+        </a>
+
+
+        <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#mainNavbar">
+
+            <span
+                class="navbar-toggler-icon">
+            </span>
+
+        </button>
+
+
+        <div
+            class="collapse navbar-collapse"
+            id="mainNavbar">
+
+            <ul
+                class="navbar-nav me-auto ms-lg-4">
+
+                <li class="nav-item">
+
+                    <a
+                        class="nav-link"
+                        href="index.html">
+
+                        หน้าแรก
+
+                    </a>
+
+                </li>
+
+
+                <li class="nav-item">
+
+                    <a
+                        class="nav-link"
+                        href="products.html">
+
+                        สินค้า
+
+                    </a>
+
+                </li>
+
+
+                <li class="nav-item">
+
+                    <a
+                        class="nav-link active"
+                        href="orders.html">
+
+                        <i
+                            class="bi bi-box-seam me-1">
+                        </i>
+
+                        คำสั่งซื้อ
+
+                    </a>
+
+                </li>
+
+            </ul>
+
+
+            <div
+                id="navbarMemberArea"
+                class="d-flex gap-2">
+
+            </div>
+
+        </div>
+
+    </div>
+
+</nav>
+
+
+
+<!-- =================================================
+     MAIN
+================================================== -->
+
+<main class="container py-5">
+
+
+    <!-- HERO -->
+
+    <section class="admin-hero">
+
+        <div class="admin-badge">
+
+            <i
+                class="bi bi-shield-lock-fill">
+            </i>
+
+            ADMIN PANEL
+
+        </div>
+
+
+        <h1 class="admin-title">
+
+            จัดการ<span>คำสั่งซื้อ</span>
+
+        </h1>
+
+
+        <p
+            class="text-secondary mb-0">
+
+            ดูและจัดการคำสั่งซื้อทั้งหมดของลูกค้า NeonGear
+
+        </p>
+
+    </section>
+
+
+
+    <!-- =================================================
+         STATS
+    ================================================== -->
+
+    <div class="row g-3 mt-2">
+
+
+        <div class="col-6 col-lg-3">
+
+            <div class="admin-stat">
+
+                <div class="admin-stat-icon">
+
+                    <i class="bi bi-box-seam"></i>
+
+                </div>
+
+                <div
+                    id="adminTotalOrders"
+                    class="admin-stat-number">
+
+                    0
+
+                </div>
+
+                <div class="admin-stat-label">
+
+                    คำสั่งซื้อทั้งหมด
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="col-6 col-lg-3">
+
+            <div class="admin-stat">
+
+                <div class="admin-stat-icon">
+
+                    <i class="bi bi-hourglass-split"></i>
+
+                </div>
+
+                <div
+                    id="adminPendingOrders"
+                    class="admin-stat-number">
+
+                    0
+
+                </div>
+
+                <div class="admin-stat-label">
+
+                    กำลังดำเนินการ
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="col-6 col-lg-3">
+
+            <div class="admin-stat">
+
+                <div class="admin-stat-icon">
+
+                    <i class="bi bi-truck"></i>
+
+                </div>
+
+                <div
+                    id="adminShippingOrders"
+                    class="admin-stat-number">
+
+                    0
+
+                </div>
+
+                <div class="admin-stat-label">
+
+                    กำลังจัดส่ง
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="col-6 col-lg-3">
+
+            <div class="admin-stat">
+
+                <div class="admin-stat-icon">
+
+                    <i class="bi bi-cash-stack"></i>
+
+                </div>
+
+                <div
+                    id="adminTotalSales"
+                    class="admin-stat-number">
+
+                    ฿0
+
+                </div>
+
+                <div class="admin-stat-label">
+
+                    ยอดขายที่ไม่ถูกยกเลิก
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =================================================
+         ORDERS
+    ================================================== -->
+
+    <section class="admin-orders-card">
+
+
+        <div class="admin-orders-header">
+
+            <div class="row g-3 align-items-center">
+
+                <div class="col-lg-5">
+
+                    <h5 class="fw-bold mb-1">
+
+                        <i
+                            class="bi bi-list-check text-info me-2">
+                        </i>
+
+                        รายการคำสั่งซื้อทั้งหมด
+
+                    </h5>
+
+                    <small class="text-secondary">
+
+                        เฉพาะ Admin เท่านั้นที่เห็นข้อมูลส่วนนี้
+
+                    </small>
+
+                </div>
+
+
+                <div class="col-lg-4">
+
+                    <input
+                        type="search"
+                        id="adminOrderSearch"
+                        class="form-control admin-search"
+                        placeholder="ค้นหา Order / ชื่อลูกค้า / Email">
+
+                </div>
+
+
+                <div class="col-lg-3">
+
+                    <select
+                        id="adminStatusFilter"
+                        class="form-select admin-search">
+
+                        <option value="all">
+                            ทุกสถานะ
+                        </option>
+
+                        <option value="สั่งซื้อสำเร็จ">
+                            สั่งซื้อสำเร็จ
+                        </option>
+
+                        <option value="กำลังเตรียมสินค้า">
+                            กำลังเตรียมสินค้า
+                        </option>
+
+                        <option value="กำลังจัดส่ง">
+                            กำลังจัดส่ง
+                        </option>
+
+                        <option value="จัดส่งแล้ว">
+                            จัดส่งแล้ว
+                        </option>
+
+                        <option value="ยกเลิกคำสั่งซื้อ">
+                            ยกเลิกคำสั่งซื้อ
+                        </option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div id="adminOrdersList"></div>
+
+
+    </section>
+
+
+</main>
+
+
+
+<!-- =================================================
+     SCRIPTS
+================================================== -->
+
+<script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js">
+</script>
+
+<!-- โหลดแต่ละไฟล์เพียงครั้งเดียว -->
+<script src="js/script.js"></script>
+<script src="js/auth.js"></script>
+
+
+<script>
+
+"use strict";
+
+
+/* =================================================
+   ADMIN ORDERS
+================================================= */
+
+let adminOrders = [];
+
+
+/* =================================================
+   GET ORDERS
+================================================= */
+
+function getAdminOrders() {
+
+    try {
+
+        const data =
+            localStorage.getItem(
+                "neonGearOrders"
+            );
+
+        if (!data) {
+            return [];
+        }
+
+        const orders =
+            JSON.parse(data);
+
+        return Array.isArray(orders)
+            ? orders
+            : [];
+
+    } catch {
+
+        return [];
+
+    }
+
+}
+
+
+/* =================================================
+   SAVE ORDERS
+================================================= */
+
+function saveAdminOrders(orders) {
+
+    localStorage.setItem(
+        "neonGearOrders",
+        JSON.stringify(orders)
+    );
+
+}
+
+
+/* =================================================
+   FORMAT MONEY
+================================================= */
+
+function formatAdminMoney(value) {
+
+    return Number(
+        value || 0
+    ).toLocaleString(
+        "th-TH",
+        {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2
+        }
+    ) + " บาท";
+
+}
+
+
+/* =================================================
+   FORMAT DATE
+================================================= */
+
+function formatAdminDate(date) {
+
+    if (!date) {
+        return "-";
+    }
+
+    const d =
+        new Date(date);
+
+    if (
+        Number.isNaN(
+            d.getTime()
+        )
+    ) {
+
+        return "-";
+
+    }
+
+    return d.toLocaleString(
+        "th-TH",
+        {
+            dateStyle: "medium",
+            timeStyle: "short"
+        }
+    );
+
+}
+
+
+/* =================================================
+   ESCAPE
+================================================= */
+
+function escapeAdminHTML(value) {
+
+    return String(
+        value ?? ""
+    )
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
+
+}
+
+
+/* =================================================
+   STATUS CLASS
+================================================= */
+
+function getAdminStatusClass(status) {
+
+    switch (status) {
+
+        case "สั่งซื้อสำเร็จ":
+            return "text-primary";
+
+        case "กำลังเตรียมสินค้า":
+            return "text-warning";
+
+        case "กำลังจัดส่ง":
+            return "text-info";
+
+        case "จัดส่งแล้ว":
+            return "text-success";
+
+        case "ยกเลิกคำสั่งซื้อ":
+            return "text-danger";
+
+        default:
+            return "text-secondary";
+
+    }
+
+}
+
+
+/* =================================================
+   RENDER
+================================================= */
+
+function renderAdminOrders() {
+
+    const container =
+        document.getElementById(
+            "adminOrdersList"
+        );
+
+    if (!container) {
+        return;
+    }
+
+
+    const search =
+        String(
+            document.getElementById(
+                "adminOrderSearch"
+            )?.value || ""
+        )
+        .trim()
+        .toLowerCase();
+
+
+    const statusFilter =
+        document.getElementById(
+            "adminStatusFilter"
+        )?.value || "all";
+
+
+    let filtered =
+        adminOrders.filter(
+            order => {
+
+                const orderId =
+                    String(
+                        order.orderId || ""
+                    ).toLowerCase();
+
+                const name =
+                    String(
+                        order.memberName || ""
+                    ).toLowerCase();
+
+                const email =
+                    String(
+                        order.memberEmail || ""
+                    ).toLowerCase();
+
+                const status =
+                    String(
+                        order.status || ""
+                    );
+
+
+                const matchesSearch =
+                    !search ||
+                    orderId.includes(search) ||
+                    name.includes(search) ||
+                    email.includes(search);
+
+
+                const matchesStatus =
+                    statusFilter === "all" ||
+                    status === statusFilter;
+
+
+                return (
+                    matchesSearch &&
+                    matchesStatus
+                );
+
+            }
+        );
+
+
+    filtered.sort(
+        (a, b) => {
+
+            return (
+                new Date(
+                    b.createdAt || 0
+                ) -
+                new Date(
+                    a.createdAt || 0
+                )
+            );
+
+        }
+    );
+
+
+    if (
+        filtered.length === 0
+    ) {
+
+        container.innerHTML = `
+
+            <div class="empty-orders">
+
+                <i
+                    class="bi bi-inbox d-block mb-3">
+                </i>
+
+                <h5>
+                    ไม่พบคำสั่งซื้อ
+                </h5>
+
+                <p class="mb-0">
+                    ลองเปลี่ยนคำค้นหาหรือสถานะ
+                </p>
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    container.innerHTML =
+        filtered
+            .map(renderAdminOrder)
+            .join("");
+
+}
+
+
+/* =================================================
+   RENDER ORDER
+================================================= */
+
+function renderAdminOrder(order) {
+
+    const items =
+        Array.isArray(order.items)
+            ? order.items
+            : [];
+
+
+    const productHTML =
+        items.map(
+            item => {
+
+                const name =
+                    escapeAdminHTML(
+                        item.name ||
+                        item.productName ||
+                        "สินค้า"
+                    );
+
+
+                const qty =
+                    Number(
+                        item.quantity ||
+                        item.qty ||
+                        1
+                    );
+
+
+                return `
+
+                    <div class="order-product mb-1">
+
+                        <i
+                            class="bi bi-cpu text-info me-1">
+                        </i>
+
+                        ${name}
+
+                        <span class="text-secondary">
+
+                            × ${qty}
+
+                        </span>
+
+                    </div>
+
+                `;
+
+            }
+        ).join("");
+
+
+    const status =
+        order.status ||
+        "สั่งซื้อสำเร็จ";
+
+
+    const isCancelled =
+        status ===
+        "ยกเลิกคำสั่งซื้อ";
+
+
+    const orderId =
+        escapeAdminHTML(
+            order.orderId ||
+            "-"
+        );
+
+
+    const memberName =
+        escapeAdminHTML(
+            order.memberName ||
+            "ไม่ระบุชื่อ"
+        );
+
+
+    const memberEmail =
+        escapeAdminHTML(
+            order.memberEmail ||
+            "-"
+        );
+
+
+    return `
+
+        <div class="admin-order">
+
+            <div class="row g-4 align-items-center">
+
+
+                <!-- ORDER -->
+
+                <div class="col-lg-3">
+
+                    <div class="order-id mb-2">
+
+                        #${orderId}
+
+                    </div>
+
+
+                    <div class="customer-name">
+
+                        ${memberName}
+
+                    </div>
+
+
+                    <div class="customer-email">
+
+                        ${memberEmail}
+
+                    </div>
+
+
+                    <div class="customer-email mt-2">
+
+                        <i class="bi bi-clock me-1"></i>
+
+                        ${formatAdminDate(
+                            order.createdAt
+                        )}
+
+                    </div>
+
+                </div>
+
+
+                <!-- PRODUCTS -->
+
+                <div class="col-lg-4">
+
+                    <div class="small text-secondary mb-2">
+
+                        สินค้า
+
+                    </div>
+
+                    ${
+                        productHTML ||
+                        `
+                        <span class="text-secondary">
+                            ไม่มีข้อมูลสินค้า
+                        </span>
+                        `
+                    }
+
+                </div>
+
+
+                <!-- TOTAL -->
+
+                <div class="col-lg-2">
+
+                    <div class="small text-secondary mb-1">
+
+                        ยอดรวม
+
+                    </div>
+
+                    <div class="order-total">
+
+                        ${formatAdminMoney(
+                            order.total
+                        )}
+
+                    </div>
+
+                </div>
+
+
+                <!-- ACTION -->
+
+                <div class="col-lg-3">
+
+                    <div class="small text-secondary mb-2">
+
+                        สถานะคำสั่งซื้อ
+
+                    </div>
+
+
+                    <select
+                        class="
+                            form-select
+                            status-select
+                            mb-2
+                            ${getAdminStatusClass(status)}
+                        "
+                        onchange="
+                            updateAdminOrderStatus(
+                                '${escapeAdminHTML(
+                                    order.orderId
+                                )}',
+                                this.value
+                            )">
+
+                        <option
+                            value="สั่งซื้อสำเร็จ"
+                            ${
+                                status ===
+                                "สั่งซื้อสำเร็จ"
+                                    ? "selected"
+                                    : ""
+                            }>
+
+                            สั่งซื้อสำเร็จ
+
+                        </option>
+
+
+                        <option
+                            value="กำลังเตรียมสินค้า"
+                            ${
+                                status ===
+                                "กำลังเตรียมสินค้า"
+                                    ? "selected"
+                                    : ""
+                            }>
+
+                            กำลังเตรียมสินค้า
+
+                        </option>
+
+
+                        <option
+                            value="กำลังจัดส่ง"
+                            ${
+                                status ===
+                                "กำลังจัดส่ง"
+                                    ? "selected"
+                                    : ""
+                            }>
+
+                            กำลังจัดส่ง
+
+                        </option>
+
+
+                        <option
+                            value="จัดส่งแล้ว"
+                            ${
+                                status ===
+                                "จัดส่งแล้ว"
+                                    ? "selected"
+                                    : ""
+                            }>
+
+                            จัดส่งแล้ว
+
+                        </option>
+
+
+                        <option
+                            value="ยกเลิกคำสั่งซื้อ"
+                            ${
+                                status ===
+                                "ยกเลิกคำสั่งซื้อ"
+                                    ? "selected"
+                                    : ""
+                            }>
+
+                            ยกเลิกคำสั่งซื้อ
+
+                        </option>
+
+                    </select>
+
+
+                    ${
+                        !isCancelled &&
+                        status !== "จัดส่งแล้ว"
+                            ? `
+
+                            <button
+                                type="button"
+                                class="
+                                    btn
+                                    btn-outline-danger
+                                    btn-sm
+                                    w-100
+                                    admin-cancel-btn
+                                "
+                                onclick="
+                                    cancelAdminOrder(
+                                        '${escapeAdminHTML(
+                                            order.orderId
+                                        )}'
+                                    )
+                                ">
+
+                                <i
+                                    class="bi bi-x-circle me-1">
+                                </i>
+
+                                ยกเลิกคำสั่งซื้อ
+
+                            </button>
+
+                            `
+                            : ""
+                    }
+
+
+                    ${
+                        isCancelled
+                            ? `
+
+                            <div
+                                class="text-danger small mt-2">
+
+                                <i
+                                    class="bi bi-x-circle-fill me-1">
+                                </i>
+
+                                ยกเลิกแล้ว
+
+                            </div>
+
+                            `
+                            : ""
+                    }
+
+                </div>
+
+            </div>
+
+        </div>
+
+    `;
+
+}
+
+
+/* =================================================
+   UPDATE STATUS
+================================================= */
+
+function updateAdminOrderStatus(
+    orderId,
+    newStatus
+) {
+
+    if (!isAdmin()) {
+
+        alert(
+            "ไม่มีสิทธิ์ดำเนินการ"
+        );
+
+        return;
+
+    }
+
+
+    const index =
+        adminOrders.findIndex(
+            order =>
+                String(
+                    order.orderId
+                ) ===
+                String(
+                    orderId
+                )
+        );
+
+
+    if (index === -1) {
+
+        alert(
+            "ไม่พบคำสั่งซื้อ"
+        );
+
+        return;
+
+    }
+
+
+    adminOrders[index].status =
+        newStatus;
+
+    adminOrders[index].shippingStatus =
+        newStatus;
+
+    adminOrders[index].updatedAt =
+        new Date().toISOString();
+
+    adminOrders[index].updatedBy =
+        "admin";
+
+
+    saveAdminOrders(
+        adminOrders
+    );
+
+
+    updateAdminStats();
+
+    renderAdminOrders();
+
+
+    console.log(
+        "Admin updated order:",
+        orderId,
+        newStatus
+    );
+
+}
+
+
+/* =================================================
+   CANCEL ORDER
+================================================= */
+
+function cancelAdminOrder(orderId) {
+
+    if (!isAdmin()) {
+
+        alert(
+            "ไม่มีสิทธิ์ดำเนินการ"
+        );
+
+        return;
+
+    }
+
+
+    const order =
+        adminOrders.find(
+            item =>
+                String(
+                    item.orderId
+                ) ===
+                String(
+                    orderId
+                )
+        );
+
+
+    if (!order) {
+
+        alert(
+            "ไม่พบคำสั่งซื้อ"
+        );
+
+        return;
+
+    }
+
+
+    if (
+        order.status ===
+        "จัดส่งแล้ว"
+    ) {
+
+        alert(
+            "ไม่สามารถยกเลิกคำสั่งซื้อที่จัดส่งแล้วได้"
+        );
+
+        return;
+
+    }
+
+
+    if (
+        !confirm(
+            "ต้องการยกเลิกคำสั่งซื้อ #" +
+            orderId +
+            " ใช่หรือไม่?"
+        )
+    ) {
+
+        return;
+
+    }
+
+
+    order.status =
+        "ยกเลิกคำสั่งซื้อ";
+
+    order.shippingStatus =
+        "ยกเลิกคำสั่งซื้อ";
+
+    order.cancelledAt =
+        new Date().toISOString();
+
+    order.cancelledBy =
+        "admin";
+
+    order.updatedAt =
+        new Date().toISOString();
+
+
+    saveAdminOrders(
+        adminOrders
+    );
+
+
+    updateAdminStats();
+
+    renderAdminOrders();
+
+
+    alert(
+        "ยกเลิกคำสั่งซื้อเรียบร้อยแล้ว"
+    );
+
+}
+
+
+/* =================================================
+   STATS
+================================================= */
+
+function updateAdminStats() {
+
+    const total =
+        adminOrders.length;
+
+
+    const pending =
+        adminOrders.filter(
+            order =>
+                order.status ===
+                "สั่งซื้อสำเร็จ" ||
+                order.status ===
+                "กำลังเตรียมสินค้า"
+        ).length;
+
+
+    const shipping =
+        adminOrders.filter(
+            order =>
+                order.status ===
+                "กำลังจัดส่ง"
+        ).length;
+
+
+    const sales =
+        adminOrders
+            .filter(
+                order =>
+                    order.status !==
+                    "ยกเลิกคำสั่งซื้อ"
+            )
+            .reduce(
+                (
+                    sum,
+                    order
+                ) =>
+                    sum +
+                    Number(
+                        order.total ||
+                        0
+                    ),
+                0
+            );
+
+
+    document.getElementById(
+        "adminTotalOrders"
+    ).textContent =
+        total;
+
+
+    document.getElementById(
+        "adminPendingOrders"
+    ).textContent =
+        pending;
+
+
+    document.getElementById(
+        "adminShippingOrders"
+    ).textContent =
+        shipping;
+
+
+    document.getElementById(
+        "adminTotalSales"
+    ).textContent =
+        "฿" +
+        sales.toLocaleString(
+            "th-TH",
+            {
+                minimumFractionDigits: 0
+            }
+        );
+
+}
+
+
+/* =================================================
+   START
+================================================= */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function () {
+
+
+        /* ADMIN ONLY */
+
+        if (
+            !requireAdmin()
+        ) {
+
+            return;
+
+        }
+
+
+        adminOrders =
+            getAdminOrders();
+
+
+        updateAdminStats();
+
+        renderAdminOrders();
+
+
+        /* SEARCH */
+
+        document
+            .getElementById(
+                "adminOrderSearch"
+            )
+            ?.addEventListener(
+                "input",
+                renderAdminOrders
+            );
+
+
+        /* FILTER */
+
+        document
+            .getElementById(
+                "adminStatusFilter"
+            )
+            ?.addEventListener(
+                "change",
+                renderAdminOrders
+            );
+
+    }
+);
+
+</script>
+
+
+</body>
+
+</html>

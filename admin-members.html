@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>NeonGear | จัดการสมาชิก</title>
+
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+    >
+
+    <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    >
+
+    <link rel="stylesheet" href="css/admin-members.css">
+</head>
+
+<body>
+
+    <!-- =========================
+         NAVBAR
+    ========================== -->
+    <nav class="navbar navbar-expand-lg navbar-dark ng-navbar">
+        <div class="container">
+
+            <a class="navbar-brand" href="index.html">
+                <span class="brand-neon">NEON</span>GEAR
+            </a>
+
+            <button
+                class="navbar-toggler"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#adminNavbar"
+            >
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="adminNavbar">
+
+                <ul class="navbar-nav ms-auto align-items-lg-center">
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="orders.html">
+                            <i class="bi bi-box-seam"></i>
+                            คำสั่งซื้อ
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link active" href="admin-members.html">
+                            <i class="bi bi-people"></i>
+                            สมาชิก
+                        </a>
+                    </li>
+
+                    <li class="nav-item ms-lg-3">
+                        <button
+                            class="btn btn-outline-danger btn-sm"
+                            onclick="logoutUser()"
+                        >
+                            <i class="bi bi-box-arrow-right"></i>
+                            ออกจากระบบ
+                        </button>
+                    </li>
+
+                </ul>
+
+            </div>
+        </div>
+    </nav>
+
+
+    <!-- =========================
+         MAIN
+    ========================== -->
+    <main class="admin-members-page">
+
+        <div class="container py-5">
+
+            <!-- HEADER -->
+            <div class="page-header mb-4">
+
+                <div>
+                    <span class="admin-label">
+                        <i class="bi bi-shield-lock-fill"></i>
+                        ADMIN PANEL
+                    </span>
+
+                    <h1>
+                        จัดการสมาชิก
+                    </h1>
+
+                    <p>
+                        ดู ค้นหา เปลี่ยนสิทธิ์ และจัดการบัญชีสมาชิก NeonGear
+                    </p>
+                </div>
+
+                <div class="member-count-box">
+                    <span>สมาชิกทั้งหมด</span>
+                    <strong id="totalMembers">0</strong>
+                </div>
+
+            </div>
+
+
+            <!-- SEARCH -->
+            <section class="control-panel">
+
+                <div class="search-box">
+
+                    <i class="bi bi-search"></i>
+
+                    <input
+                        type="text"
+                        id="memberSearch"
+                        placeholder="ค้นหาชื่อ, Email หรือ Username..."
+                        autocomplete="off"
+                    >
+
+                </div>
+
+                <select id="roleFilter" class="role-filter">
+
+                    <option value="all">
+                        ทุก Role
+                    </option>
+
+                    <option value="member">
+                        Member
+                    </option>
+
+                    <option value="admin">
+                        Admin
+                    </option>
+
+                </select>
+
+            </section>
+
+
+            <!-- MEMBER TABLE -->
+            <section class="members-card">
+
+                <div class="table-responsive">
+
+                    <table class="table members-table align-middle">
+
+                        <thead>
+
+                            <tr>
+
+                                <th>#</th>
+
+                                <th>สมาชิก</th>
+
+                                <th>Username</th>
+
+                                <th>Email</th>
+
+                                <th>Role</th>
+
+                                <th>สมัครเมื่อ</th>
+
+                                <th class="text-center">
+                                    จัดการ
+                                </th>
+
+                            </tr>
+
+                        </thead>
+
+                        <tbody id="membersTableBody">
+
+                            <!-- JS จะสร้างข้อมูลตรงนี้ -->
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+
+                <!-- EMPTY STATE -->
+                <div
+                    id="emptyMembers"
+                    class="empty-members d-none"
+                >
+
+                    <i class="bi bi-person-x"></i>
+
+                    <h3>ไม่พบสมาชิก</h3>
+
+                    <p>
+                        ลองเปลี่ยนคำค้นหาหรือตัวกรอง Role
+                    </p>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </main>
+
+
+    <!-- =========================
+         ROLE MODAL
+    ========================== -->
+    <div
+        class="modal fade"
+        id="roleModal"
+        tabindex="-1"
+    >
+
+        <div class="modal-dialog modal-dialog-centered">
+
+            <div class="modal-content admin-modal">
+
+                <div class="modal-header">
+
+                    <h5 class="modal-title">
+                        <i class="bi bi-shield-check"></i>
+                        เปลี่ยนสิทธิ์สมาชิก
+                    </h5>
+
+                    <button
+                        type="button"
+                        class="btn-close btn-close-white"
+                        data-bs-dismiss="modal"
+                    ></button>
+
+                </div>
+
+                <div class="modal-body">
+
+                    <p>
+                        ต้องการเปลี่ยน Role ของ
+                        <strong id="roleMemberName"></strong>
+                        หรือไม่?
+                    </p>
+
+                    <div class="role-preview">
+
+                        <span id="currentRolePreview">
+                            Member
+                        </span>
+
+                        <i class="bi bi-arrow-right"></i>
+
+                        <span id="newRolePreview">
+                            Admin
+                        </span>
+
+                    </div>
+
+                </div>
+
+                <div class="modal-footer">
+
+                    <button
+                        type="button"
+                        class="btn btn-secondary"
+                        data-bs-dismiss="modal"
+                    >
+                        ยกเลิก
+                    </button>
+
+                    <button
+                        type="button"
+                        class="btn btn-neon"
+                        id="confirmRoleBtn"
+                    >
+                        ยืนยัน
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         DELETE MODAL
+    ========================== -->
+    <div
+        class="modal fade"
+        id="deleteModal"
+        tabindex="-1"
+    >
+
+        <div class="modal-dialog modal-dialog-centered">
+
+            <div class="modal-content admin-modal delete-modal">
+
+                <div class="modal-header">
+
+                    <h5 class="modal-title">
+                        <i class="bi bi-trash3"></i>
+                        ลบสมาชิก
+                    </h5>
+
+                    <button
+                        type="button"
+                        class="btn-close btn-close-white"
+                        data-bs-dismiss="modal"
+                    ></button>
+
+                </div>
+
+                <div class="modal-body">
+
+                    <p>
+                        คุณกำลังจะลบสมาชิก
+                        <strong id="deleteMemberName"></strong>
+                    </p>
+
+                    <div class="warning-box">
+
+                        <i class="bi bi-exclamation-triangle-fill"></i>
+
+                        <span>
+                            การลบสมาชิกไม่สามารถย้อนกลับได้
+                        </span>
+
+                    </div>
+
+                </div>
+
+                <div class="modal-footer">
+
+                    <button
+                        type="button"
+                        class="btn btn-secondary"
+                        data-bs-dismiss="modal"
+                    >
+                        ยกเลิก
+                    </button>
+
+                    <button
+                        type="button"
+                        class="btn btn-danger"
+                        id="confirmDeleteBtn"
+                    >
+                        <i class="bi bi-trash3"></i>
+                        ลบสมาชิก
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- SCRIPTS -->
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script src="js/script.js"></script>
+
+    <script src="js/auth.js"></script>
+
+    <script src="js/admin-members.js"></script>
+
+</body>
+</html>

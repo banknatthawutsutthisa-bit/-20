@@ -1,0 +1,2393 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>ประวัติการสั่งซื้อของฉัน | NeonGear</title>
+
+    <!-- Bootstrap -->
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+    >
+
+    <!-- Bootstrap Icons -->
+    <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    >
+
+    <!-- Google Font -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet"
+    >
+
+    <style>
+
+        /* =====================================================
+           NEONGEAR — MY ORDERS
+           BLACK / WHITE / CYAN / PURPLE
+        ===================================================== */
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            font-family: "Kanit", sans-serif;
+
+            color: #ffffff;
+
+            background:
+                radial-gradient(
+                    circle at 15% 10%,
+                    rgba(0, 217, 255, 0.12),
+                    transparent 30%
+                ),
+                radial-gradient(
+                    circle at 85% 20%,
+                    rgba(181, 28, 255, 0.14),
+                    transparent 32%
+                ),
+                linear-gradient(
+                    135deg,
+                    #020306 0%,
+                    #070910 45%,
+                    #0d111b 100%
+                );
+
+            background-attachment: fixed;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+
+            pointer-events: none;
+
+            background:
+                linear-gradient(
+                    rgba(255,255,255,0.015) 1px,
+                    transparent 1px
+                ),
+                linear-gradient(
+                    90deg,
+                    rgba(255,255,255,0.015) 1px,
+                    transparent 1px
+                );
+
+            background-size: 45px 45px;
+
+            mask-image: linear-gradient(
+                to bottom,
+                black,
+                transparent 90%
+            );
+        }
+
+        /* =====================================================
+           NAVBAR
+        ===================================================== */
+
+        .ng-navbar {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+
+            background:
+                rgba(2, 3, 6, 0.92);
+
+            backdrop-filter: blur(18px);
+
+            border-bottom:
+                1px solid rgba(0, 217, 255, 0.18);
+
+            box-shadow:
+                0 10px 40px rgba(0, 0, 0, 0.45);
+        }
+
+        .ng-brand {
+            color: #ffffff !important;
+
+            font-size: 1.5rem;
+            font-weight: 700;
+
+            letter-spacing: 1px;
+
+            text-decoration: none;
+        }
+
+        .ng-brand span {
+            color: #00d9ff;
+
+            text-shadow:
+                0 0 12px rgba(0, 217, 255, 0.65);
+        }
+
+        .ng-nav-link {
+            color: rgba(255,255,255,0.78) !important;
+
+            margin-left: 8px;
+            margin-right: 8px;
+
+            transition: 0.25s ease;
+
+            position: relative;
+        }
+
+        .ng-nav-link:hover {
+            color: #00d9ff !important;
+        }
+
+        .ng-nav-link.active {
+            color: #00d9ff !important;
+        }
+
+        .ng-nav-link.active::after {
+            content: "";
+
+            position: absolute;
+
+            left: 10px;
+            right: 10px;
+            bottom: -8px;
+
+            height: 2px;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #00d9ff,
+                    #1685ff,
+                    #b51cff
+                );
+
+            box-shadow:
+                0 0 10px rgba(0,217,255,0.7);
+        }
+
+        .member-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+
+            padding: 8px 14px;
+
+            border-radius: 999px;
+
+            background:
+                rgba(255,255,255,0.04);
+
+            border:
+                1px solid rgba(255,255,255,0.1);
+
+            color: #ffffff;
+
+            font-size: 0.9rem;
+        }
+
+        .member-pill i {
+            color: #00d9ff;
+        }
+
+        /* =====================================================
+           PAGE HEADER
+        ===================================================== */
+
+        .page-header {
+            padding: 65px 20px 35px;
+
+            text-align: center;
+        }
+
+        .page-header .icon {
+            width: 78px;
+            height: 78px;
+
+            margin: 0 auto 18px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 24px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(0,217,255,0.15),
+                    rgba(181,28,255,0.15)
+                );
+
+            border:
+                1px solid rgba(0,217,255,0.25);
+
+            box-shadow:
+                0 0 35px rgba(0,217,255,0.12),
+                inset 0 0 25px rgba(181,28,255,0.08);
+
+            color: #00d9ff;
+
+            font-size: 2rem;
+        }
+
+        .page-header h1 {
+            margin: 0;
+
+            font-size: clamp(2rem, 5vw, 3.2rem);
+
+            font-weight: 700;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #ffffff,
+                    #00d9ff,
+                    #b51cff
+                );
+
+            -webkit-background-clip: text;
+            background-clip: text;
+
+            -webkit-text-fill-color: transparent;
+        }
+
+        .page-header p {
+            margin-top: 10px;
+
+            color: rgba(255,255,255,0.6);
+        }
+
+        /* =====================================================
+           CONTAINER
+        ===================================================== */
+
+        .orders-container {
+            width: min(1150px, calc(100% - 30px));
+
+            margin: 0 auto 80px;
+        }
+
+        /* =====================================================
+           SUMMARY
+        ===================================================== */
+
+        .summary-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 16px;
+
+            margin-bottom: 25px;
+        }
+
+        .summary-card {
+            padding: 22px;
+
+            border-radius: 18px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(255,255,255,0.06),
+                    rgba(255,255,255,0.025)
+                );
+
+            border:
+                1px solid rgba(255,255,255,0.09);
+
+            box-shadow:
+                0 15px 35px rgba(0,0,0,0.25);
+
+            transition: 0.25s ease;
+        }
+
+        .summary-card:hover {
+            transform: translateY(-3px);
+
+            border-color:
+                rgba(0,217,255,0.3);
+        }
+
+        .summary-icon {
+            width: 45px;
+            height: 45px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 13px;
+
+            margin-bottom: 12px;
+
+            background:
+                rgba(0,217,255,0.1);
+
+            color: #00d9ff;
+
+            font-size: 1.3rem;
+        }
+
+        .summary-card:nth-child(2) .summary-icon {
+            color: #b51cff;
+            background: rgba(181,28,255,0.1);
+        }
+
+        .summary-card:nth-child(3) .summary-icon {
+            color: #1685ff;
+            background: rgba(22,133,255,0.1);
+        }
+
+        .summary-label {
+            color: rgba(255,255,255,0.55);
+            font-size: 0.9rem;
+        }
+
+        .summary-value {
+            margin-top: 3px;
+
+            font-size: 1.55rem;
+            font-weight: 600;
+
+            color: #ffffff;
+        }
+
+        /* =====================================================
+           ORDER CARD
+        ===================================================== */
+
+        .order-card {
+            position: relative;
+
+            margin-bottom: 20px;
+
+            padding: 25px;
+
+            border-radius: 22px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(13,17,27,0.96),
+                    rgba(7,9,16,0.96)
+                );
+
+            border:
+                1px solid rgba(255,255,255,0.09);
+
+            box-shadow:
+                0 20px 50px rgba(0,0,0,0.3);
+
+            overflow: hidden;
+
+            animation:
+                orderAppear 0.45s ease both;
+        }
+
+        .order-card::before {
+            content: "";
+
+            position: absolute;
+
+            left: 0;
+            top: 0;
+            bottom: 0;
+
+            width: 3px;
+
+            background:
+                linear-gradient(
+                    to bottom,
+                    #00d9ff,
+                    #1685ff,
+                    #b51cff
+                );
+
+            box-shadow:
+                0 0 18px rgba(0,217,255,0.55);
+        }
+
+        @keyframes orderAppear {
+            from {
+                opacity: 0;
+                transform: translateY(12px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .order-top {
+            display: flex;
+
+            align-items: flex-start;
+            justify-content: space-between;
+
+            gap: 20px;
+
+            padding-bottom: 18px;
+
+            border-bottom:
+                1px solid rgba(255,255,255,0.07);
+        }
+
+        .order-number {
+            font-size: 1.1rem;
+            font-weight: 600;
+
+            color: #ffffff;
+        }
+
+        .order-number span {
+            color: #00d9ff;
+
+            text-shadow:
+                0 0 10px rgba(0,217,255,0.4);
+        }
+
+        .order-date {
+            margin-top: 5px;
+
+            color: rgba(255,255,255,0.5);
+
+            font-size: 0.85rem;
+        }
+
+        /* =====================================================
+           STATUS
+        ===================================================== */
+
+        .status-badge {
+            display: inline-flex;
+
+            align-items: center;
+            gap: 7px;
+
+            padding: 7px 13px;
+
+            border-radius: 999px;
+
+            font-size: 0.82rem;
+            font-weight: 500;
+
+            white-space: nowrap;
+        }
+
+        .status-success {
+            color: #65ffbd;
+
+            background:
+                rgba(46, 213, 115, 0.1);
+
+            border:
+                1px solid rgba(46, 213, 115, 0.2);
+        }
+
+        .status-preparing {
+            color: #ffd166;
+
+            background:
+                rgba(255, 209, 102, 0.1);
+
+            border:
+                1px solid rgba(255, 209, 102, 0.2);
+        }
+
+        .status-shipping {
+            color: #00d9ff;
+
+            background:
+                rgba(0, 217, 255, 0.1);
+
+            border:
+                1px solid rgba(0,217,255,0.2);
+        }
+
+        .status-delivered {
+            color: #9dff8b;
+
+            background:
+                rgba(100, 255, 120, 0.1);
+
+            border:
+                1px solid rgba(100,255,120,0.2);
+        }
+
+        .status-cancelled {
+            color: #ff6b81;
+
+            background:
+                rgba(255, 75, 100, 0.1);
+
+            border:
+                1px solid rgba(255,75,100,0.2);
+        }
+
+        /* =====================================================
+           ITEMS
+        ===================================================== */
+
+        .order-items {
+            margin-top: 18px;
+        }
+
+        .order-item {
+            display: flex;
+
+            align-items: center;
+
+            gap: 15px;
+
+            padding: 12px 0;
+
+            border-bottom:
+                1px solid rgba(255,255,255,0.05);
+        }
+
+        .order-item:last-child {
+            border-bottom: none;
+        }
+
+        .item-image {
+            width: 68px;
+            height: 68px;
+
+            flex: 0 0 68px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 13px;
+
+            background:
+                rgba(255,255,255,0.05);
+
+            border:
+                1px solid rgba(255,255,255,0.08);
+
+            overflow: hidden;
+        }
+
+        .item-image img {
+            width: 100%;
+            height: 100%;
+
+            object-fit: contain;
+
+            padding: 6px;
+        }
+
+        .item-info {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .item-name {
+            color: #ffffff;
+
+            font-weight: 500;
+
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .item-quantity {
+            margin-top: 4px;
+
+            color: rgba(255,255,255,0.5);
+
+            font-size: 0.82rem;
+        }
+
+        .item-price {
+            color: #00d9ff;
+
+            font-weight: 500;
+
+            white-space: nowrap;
+        }
+
+        /* =====================================================
+           ORDER BOTTOM
+        ===================================================== */
+
+        .order-bottom {
+            display: flex;
+
+            align-items: center;
+            justify-content: space-between;
+
+            gap: 15px;
+
+            padding-top: 18px;
+        }
+
+        .total-label {
+            color: rgba(255,255,255,0.55);
+
+            font-size: 0.9rem;
+        }
+
+        .total-price {
+            margin-top: 3px;
+
+            font-size: 1.5rem;
+
+            font-weight: 700;
+
+            color: #ffffff;
+        }
+
+        .total-price span {
+            color: #00d9ff;
+        }
+
+        .cancel-btn {
+            border: 1px solid rgba(255,75,100,0.35);
+
+            background:
+                rgba(255,75,100,0.08);
+
+            color: #ff7c91;
+
+            border-radius: 10px;
+
+            padding: 9px 15px;
+
+            font-family: inherit;
+
+            transition: 0.25s ease;
+        }
+
+        .cancel-btn:hover {
+            background:
+                rgba(255,75,100,0.16);
+
+            color: #ff9aaa;
+
+            border-color:
+                rgba(255,75,100,0.55);
+        }
+
+        /* =====================================================
+           EMPTY
+        ===================================================== */
+
+        .empty-orders {
+            display: none;
+
+            text-align: center;
+
+            padding: 70px 20px;
+
+            border-radius: 22px;
+
+            background:
+                rgba(255,255,255,0.025);
+
+            border:
+                1px dashed rgba(255,255,255,0.12);
+        }
+
+        .empty-orders.show {
+            display: block;
+        }
+
+        .empty-icon {
+            width: 80px;
+            height: 80px;
+
+            margin: 0 auto 18px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 50%;
+
+            background:
+                rgba(0,217,255,0.08);
+
+            color: #00d9ff;
+
+            font-size: 2rem;
+        }
+
+        .empty-orders h3 {
+            font-size: 1.3rem;
+        }
+
+        .empty-orders p {
+            color: rgba(255,255,255,0.5);
+        }
+
+        .shop-btn {
+            display: inline-flex;
+
+            align-items: center;
+            gap: 8px;
+
+            margin-top: 10px;
+
+            padding: 11px 20px;
+
+            border-radius: 11px;
+
+            color: #ffffff;
+
+            text-decoration: none;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #00bde0,
+                    #1685ff,
+                    #8c19d8
+                );
+
+            box-shadow:
+                0 8px 25px rgba(0,217,255,0.15);
+
+            transition: 0.25s ease;
+        }
+
+        .shop-btn:hover {
+            color: #ffffff;
+
+            transform: translateY(-2px);
+
+            box-shadow:
+                0 12px 30px rgba(0,217,255,0.25);
+        }
+
+        /* =====================================================
+           LOADING
+        ===================================================== */
+
+        .loading {
+            text-align: center;
+
+            padding: 70px 20px;
+
+            color: rgba(255,255,255,0.55);
+        }
+
+        .loading .spinner-border {
+            color: #00d9ff !important;
+        }
+
+        /* =====================================================
+           MODAL
+        ===================================================== */
+
+        .modal-content {
+            background:
+                linear-gradient(
+                    145deg,
+                    #0d111b,
+                    #070910
+                );
+
+            color: #ffffff;
+
+            border:
+                1px solid rgba(0,217,255,0.2);
+
+            border-radius: 20px;
+
+            box-shadow:
+                0 30px 80px rgba(0,0,0,0.65);
+        }
+
+        .modal-header {
+            border-bottom:
+                1px solid rgba(255,255,255,0.08);
+        }
+
+        .modal-footer {
+            border-top:
+                1px solid rgba(255,255,255,0.08);
+        }
+
+        .modal-title {
+            color: #ffffff;
+        }
+
+        .modal-title i {
+            color: #ff6b81;
+        }
+
+        .btn-close {
+            filter: invert(1);
+        }
+
+        .modal-body {
+            color: rgba(255,255,255,0.72);
+        }
+
+        .btn-cancel-order {
+            background:
+                rgba(255,255,255,0.06);
+
+            color: #ffffff;
+
+            border:
+                1px solid rgba(255,255,255,0.1);
+        }
+
+        .btn-cancel-order:hover {
+            background:
+                rgba(255,255,255,0.1);
+
+            color: #ffffff;
+        }
+
+        .btn-confirm-cancel {
+            background:
+                linear-gradient(
+                    90deg,
+                    #ff4b64,
+                    #d92958
+                );
+
+            border: none;
+
+            color: #ffffff;
+        }
+
+        .btn-confirm-cancel:hover {
+            color: #ffffff;
+
+            filter: brightness(1.1);
+        }
+
+        /* =====================================================
+           FOOTER
+        ===================================================== */
+
+        footer {
+            margin-top: 50px;
+
+            padding: 30px 20px;
+
+            text-align: center;
+
+            color: rgba(255,255,255,0.4);
+
+            border-top:
+                1px solid rgba(255,255,255,0.06);
+        }
+
+        footer strong {
+            color: #00d9ff;
+        }
+
+        /* =====================================================
+           RESPONSIVE
+        ===================================================== */
+
+        @media (max-width: 768px) {
+
+            .summary-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .order-top {
+                flex-direction: column;
+            }
+
+            .order-bottom {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .cancel-btn {
+                width: 100%;
+            }
+
+            .item-price {
+                font-size: 0.9rem;
+            }
+
+        }
+
+        @media (max-width: 480px) {
+
+            .page-header {
+                padding-top: 40px;
+            }
+
+            .order-card {
+                padding: 18px;
+            }
+
+            .item-image {
+                width: 55px;
+                height: 55px;
+
+                flex-basis: 55px;
+            }
+
+            .item-name {
+                font-size: 0.9rem;
+            }
+
+            .total-price {
+                font-size: 1.3rem;
+            }
+
+        }
+
+    </style>
+</head>
+
+<body>
+
+<!-- =====================================================
+     NAVBAR
+===================================================== -->
+
+<nav class="navbar navbar-expand-lg ng-navbar">
+
+    <div class="container">
+
+        <a
+            href="index.html"
+            class="ng-brand"
+        >
+            <span>NEON</span>GEAR
+        </a>
+
+        <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#ngNavbar"
+            style="
+                border:1px solid rgba(0,217,255,.3);
+                color:#00d9ff;
+            "
+        >
+            <i class="bi bi-list"></i>
+        </button>
+
+        <div
+            class="collapse navbar-collapse"
+            id="ngNavbar"
+        >
+
+            <ul class="navbar-nav ms-auto align-items-lg-center">
+
+                <li class="nav-item">
+                    <a
+                        href="index.html"
+                        class="nav-link ng-nav-link"
+                    >
+                        <i class="bi bi-house"></i>
+                        หน้าแรก
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a
+                        href="products.html"
+                        class="nav-link ng-nav-link"
+                    >
+                        <i class="bi bi-grid"></i>
+                        สินค้า
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a
+                        href="member.html"
+                        class="nav-link ng-nav-link"
+                    >
+                        <i class="bi bi-person"></i>
+                        บัญชีของฉัน
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a
+                        href="my-orders.html"
+                        class="nav-link ng-nav-link active"
+                    >
+                        <i class="bi bi-receipt"></i>
+                        ประวัติการสั่งซื้อ
+                    </a>
+                </li>
+
+                <li class="nav-item ms-lg-2 mt-2 mt-lg-0">
+
+                    <div class="member-pill">
+
+                        <i class="bi bi-person-circle"></i>
+
+                        <span id="memberNameDisplay">
+                            สมาชิก
+                        </span>
+
+                    </div>
+
+                </li>
+
+            </ul>
+
+        </div>
+
+    </div>
+
+</nav>
+
+
+<!-- =====================================================
+     PAGE HEADER
+===================================================== -->
+
+<section class="page-header">
+
+    <div class="icon">
+        <i class="bi bi-receipt-cutoff"></i>
+    </div>
+
+    <h1>ประวัติการสั่งซื้อของฉัน</h1>
+
+    <p>
+        ดูคำสั่งซื้อและสถานะการจัดส่งของคุณ
+    </p>
+
+</section>
+
+
+<!-- =====================================================
+     MAIN
+===================================================== -->
+
+<main class="orders-container">
+
+    <!-- SUMMARY -->
+
+    <div class="summary-grid">
+
+        <div class="summary-card">
+
+            <div class="summary-icon">
+                <i class="bi bi-bag-check"></i>
+            </div>
+
+            <div class="summary-label">
+                จำนวนคำสั่งซื้อ
+            </div>
+
+            <div
+                class="summary-value"
+                id="totalMyOrders"
+            >
+                0
+            </div>
+
+        </div>
+
+
+        <div class="summary-card">
+
+            <div class="summary-icon">
+                <i class="bi bi-currency-dollar"></i>
+            </div>
+
+            <div class="summary-label">
+                ยอดสั่งซื้อทั้งหมด
+            </div>
+
+            <div
+                class="summary-value"
+                id="totalMySpent"
+            >
+                ฿0
+            </div>
+
+        </div>
+
+
+        <div class="summary-card">
+
+            <div class="summary-icon">
+                <i class="bi bi-truck"></i>
+            </div>
+
+            <div class="summary-label">
+                กำลังจัดส่ง
+            </div>
+
+            <div
+                class="summary-value"
+                id="shippingMyOrders"
+            >
+                0
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- LOADING -->
+
+    <div
+        class="loading"
+        id="ordersLoading"
+    >
+
+        <div
+            class="spinner-border"
+            role="status"
+        ></div>
+
+        <div class="mt-3">
+            กำลังโหลดประวัติการสั่งซื้อ...
+        </div>
+
+    </div>
+
+
+    <!-- ORDERS -->
+
+    <div id="myOrdersList"></div>
+
+
+    <!-- EMPTY -->
+
+    <div
+        class="empty-orders"
+        id="emptyOrders"
+    >
+
+        <div class="empty-icon">
+            <i class="bi bi-bag-x"></i>
+        </div>
+
+        <h3>
+            ยังไม่มีประวัติการสั่งซื้อ
+        </h3>
+
+        <p>
+            เมื่อคุณสั่งซื้อสินค้า รายการสั่งซื้อจะแสดงที่หน้านี้
+        </p>
+
+        <a
+            href="products.html"
+            class="shop-btn"
+        >
+            <i class="bi bi-cart3"></i>
+            ไปเลือกซื้อสินค้า
+        </a>
+
+    </div>
+
+</main>
+
+
+<!-- =====================================================
+     CANCEL MODAL
+===================================================== -->
+
+<div
+    class="modal fade"
+    id="cancelOrderModal"
+    tabindex="-1"
+    aria-hidden="true"
+>
+
+    <div class="modal-dialog modal-dialog-centered">
+
+        <div class="modal-content">
+
+            <div class="modal-header">
+
+                <h5 class="modal-title">
+
+                    <i class="bi bi-exclamation-triangle me-2"></i>
+
+                    ยกเลิกคำสั่งซื้อ
+
+                </h5>
+
+                <button
+                    type="button"
+                    class="btn-close"
+                    data-bs-dismiss="modal"
+                ></button>
+
+            </div>
+
+            <div class="modal-body">
+
+                <p>
+                    คุณต้องการยกเลิกคำสั่งซื้อ
+                </p>
+
+                <strong
+                    id="cancelOrderNumber"
+                    style="color:#00d9ff;"
+                >
+                    -
+                </strong>
+
+                <p class="mt-3 mb-0">
+                    หากยืนยันแล้ว สถานะคำสั่งซื้อจะเปลี่ยนเป็น
+                    <strong style="color:#ff6b81;">
+                        ยกเลิกคำสั่งซื้อ
+                    </strong>
+                </p>
+
+            </div>
+
+            <div class="modal-footer">
+
+                <button
+                    type="button"
+                    class="btn btn-cancel-order"
+                    data-bs-dismiss="modal"
+                >
+                    ไม่ยกเลิก
+                </button>
+
+                <button
+                    type="button"
+                    class="btn btn-confirm-cancel"
+                    id="confirmCancelBtn"
+                >
+                    <i class="bi bi-x-circle me-1"></i>
+                    ยืนยันยกเลิก
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<footer>
+
+    <strong>NEONGEAR</strong>
+
+    <span>
+        — Premium Cyber Gaming
+    </span>
+
+    <br>
+
+    <small>
+        © 2026 NeonGear. All rights reserved.
+    </small>
+
+</footer>
+
+
+<!-- =====================================================
+     BOOTSTRAP
+===================================================== -->
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+
+<!-- =====================================================
+     NEONGEAR MAIN SCRIPT
+===================================================== -->
+
+<script src="js/script.js"></script>
+
+
+<!-- =====================================================
+     AUTH SYSTEM
+===================================================== -->
+
+<script src="js/auth.js"></script>
+
+
+<!-- =====================================================
+     MY ORDERS SYSTEM
+===================================================== -->
+
+<script>
+
+"use strict";
+
+
+/* =====================================================
+   CONSTANTS
+===================================================== */
+
+const MY_ORDERS_KEY =
+    "neonGearOrders";
+
+const MY_MEMBER_KEY =
+    "neonGearCurrentMember";
+
+
+let selectedCancelOrderId = null;
+
+
+/* =====================================================
+   GET CURRENT MEMBER
+===================================================== */
+
+function getCurrentMember() {
+
+    try {
+
+        const raw =
+            localStorage.getItem(MY_MEMBER_KEY);
+
+        if (!raw) {
+            return null;
+        }
+
+        return JSON.parse(raw);
+
+    } catch (error) {
+
+        console.error(
+            "Cannot read current member:",
+            error
+        );
+
+        return null;
+    }
+}
+
+
+/* =====================================================
+   GET ORDERS
+===================================================== */
+
+function getMyOrders() {
+
+    try {
+
+        const raw =
+            localStorage.getItem(MY_ORDERS_KEY);
+
+        if (!raw) {
+            return [];
+        }
+
+        const orders =
+            JSON.parse(raw);
+
+        return Array.isArray(orders)
+            ? orders
+            : [];
+
+    } catch (error) {
+
+        console.error(
+            "Cannot read orders:",
+            error
+        );
+
+        return [];
+    }
+}
+
+
+/* =====================================================
+   SAVE ORDERS
+===================================================== */
+
+function saveMyOrders(orders) {
+
+    localStorage.setItem(
+        MY_ORDERS_KEY,
+        JSON.stringify(orders)
+    );
+
+}
+
+
+/* =====================================================
+   FORMAT PRICE
+===================================================== */
+
+function formatPrice(value) {
+
+    return Number(value || 0)
+        .toLocaleString("th-TH", {
+            minimumFractionDigits: 0,
+            maximumFractionDigits: 2
+        });
+
+}
+
+
+/* =====================================================
+   FORMAT DATE
+===================================================== */
+
+function formatDate(dateValue) {
+
+    if (!dateValue) {
+        return "-";
+    }
+
+    const date =
+        new Date(dateValue);
+
+    if (Number.isNaN(date.getTime())) {
+        return dateValue;
+    }
+
+    return date.toLocaleString(
+        "th-TH",
+        {
+            dateStyle: "medium",
+            timeStyle: "short"
+        }
+    );
+
+}
+
+
+/* =====================================================
+   ESCAPE HTML
+===================================================== */
+
+function escapeHTML(value) {
+
+    return String(value ?? "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+
+}
+
+
+/* =====================================================
+   STATUS CLASS
+===================================================== */
+
+function getStatusClass(status) {
+
+    switch (status) {
+
+        case "สั่งซื้อสำเร็จ":
+            return "status-success";
+
+        case "กำลังเตรียมสินค้า":
+            return "status-preparing";
+
+        case "กำลังจัดส่ง":
+            return "status-shipping";
+
+        case "จัดส่งแล้ว":
+            return "status-delivered";
+
+        case "ยกเลิกคำสั่งซื้อ":
+            return "status-cancelled";
+
+        default:
+            return "status-success";
+    }
+
+}
+
+
+/* =====================================================
+   STATUS ICON
+===================================================== */
+
+function getStatusIcon(status) {
+
+    switch (status) {
+
+        case "สั่งซื้อสำเร็จ":
+            return "bi-check-circle";
+
+        case "กำลังเตรียมสินค้า":
+            return "bi-box-seam";
+
+        case "กำลังจัดส่ง":
+            return "bi-truck";
+
+        case "จัดส่งแล้ว":
+            return "bi-check2-all";
+
+        case "ยกเลิกคำสั่งซื้อ":
+            return "bi-x-circle";
+
+        default:
+            return "bi-info-circle";
+    }
+
+}
+
+
+/* =====================================================
+   CAN CANCEL
+===================================================== */
+
+function canCancelOrder(order) {
+
+    const status =
+        order.shippingStatus ||
+        order.status ||
+        "";
+
+    return (
+        status === "สั่งซื้อสำเร็จ" ||
+        status === "กำลังเตรียมสินค้า"
+    );
+
+}
+
+
+/* =====================================================
+   RENDER ORDER ITEMS
+===================================================== */
+
+function renderOrderItems(items) {
+
+    if (!Array.isArray(items) || items.length === 0) {
+
+        return `
+            <div
+                style="
+                    color:rgba(255,255,255,.45);
+                    padding:15px 0;
+                "
+            >
+                ไม่พบรายการสินค้า
+            </div>
+        `;
+
+    }
+
+
+    return items.map(item => {
+
+        const name =
+            item.name ||
+            item.productName ||
+            "สินค้า";
+
+        const quantity =
+            Number(item.quantity || 1);
+
+        const price =
+            Number(
+                item.price ||
+                item.unitPrice ||
+                0
+            );
+
+        const image =
+            item.image ||
+            item.productImage ||
+            "";
+
+
+        return `
+
+            <div class="order-item">
+
+                <div class="item-image">
+
+                    ${
+                        image
+                        ?
+                        `
+                        <img
+                            src="${escapeHTML(image)}"
+                            alt="${escapeHTML(name)}"
+                            onerror="
+                                this.style.display='none';
+                                this.parentElement.innerHTML='<i class=&quot;bi bi-image&quot; style=&quot;color:#00d9ff;font-size:1.4rem;&quot;></i>';
+                            "
+                        >
+                        `
+                        :
+                        `
+                        <i
+                            class="bi bi-image"
+                            style="
+                                color:#00d9ff;
+                                font-size:1.4rem;
+                            "
+                        ></i>
+                        `
+                    }
+
+                </div>
+
+
+                <div class="item-info">
+
+                    <div class="item-name">
+                        ${escapeHTML(name)}
+                    </div>
+
+                    <div class="item-quantity">
+                        จำนวน ${quantity} ชิ้น
+                    </div>
+
+                </div>
+
+
+                <div class="item-price">
+
+                    ฿${formatPrice(
+                        price * quantity
+                    )}
+
+                </div>
+
+            </div>
+
+        `;
+
+    }).join("");
+
+}
+
+
+/* =====================================================
+   RENDER ORDERS
+===================================================== */
+
+function renderMyOrders() {
+
+    const currentMember =
+        getCurrentMember();
+
+
+    const loading =
+        document.getElementById(
+            "ordersLoading"
+        );
+
+    const list =
+        document.getElementById(
+            "myOrdersList"
+        );
+
+    const empty =
+        document.getElementById(
+            "emptyOrders"
+        );
+
+
+    loading.style.display = "none";
+
+
+    if (!currentMember) {
+
+        list.innerHTML = "";
+
+        empty.classList.add("show");
+
+        empty.innerHTML = `
+
+            <div class="empty-icon">
+                <i class="bi bi-person-lock"></i>
+            </div>
+
+            <h3>
+                กรุณาเข้าสู่ระบบ
+            </h3>
+
+            <p>
+                คุณต้องเข้าสู่ระบบก่อนจึงจะดูประวัติการสั่งซื้อได้
+            </p>
+
+            <a
+                href="login.html"
+                class="shop-btn"
+            >
+                <i class="bi bi-box-arrow-in-right"></i>
+                เข้าสู่ระบบ
+            </a>
+
+        `;
+
+        updateSummary([]);
+
+        return;
+    }
+
+
+    /*
+       IMPORTANT:
+       กรองด้วย memberId เท่านั้น
+       เพื่อให้ลูกค้าเห็นเฉพาะคำสั่งซื้อของตัวเอง
+    */
+
+    const allOrders =
+        getMyOrders();
+
+    const memberOrders =
+        allOrders
+            .filter(order => {
+
+                return String(
+                    order.memberId || ""
+                ) === String(
+                    currentMember.id || ""
+                );
+
+            })
+            .sort((a, b) => {
+
+                const dateA =
+                    new Date(
+                        a.createdAt || 0
+                    ).getTime();
+
+                const dateB =
+                    new Date(
+                        b.createdAt || 0
+                    ).getTime();
+
+                return dateB - dateA;
+
+            });
+
+
+    updateSummary(memberOrders);
+
+
+    if (memberOrders.length === 0) {
+
+        list.innerHTML = "";
+
+        empty.classList.add("show");
+
+        return;
+    }
+
+
+    empty.classList.remove("show");
+
+
+    list.innerHTML =
+        memberOrders
+            .map(
+                renderOrderCard
+            )
+            .join("");
+
+}
+
+
+/* =====================================================
+   RENDER ORDER CARD
+===================================================== */
+
+function renderOrderCard(order, index) {
+
+    const status =
+        order.shippingStatus ||
+        order.status ||
+        "สั่งซื้อสำเร็จ";
+
+
+    const orderId =
+        order.orderId ||
+        order.id ||
+        "ไม่ระบุ";
+
+
+    const total =
+        Number(
+            order.total ||
+            order.grandTotal ||
+            0
+        );
+
+
+    const items =
+        Array.isArray(order.items)
+            ? order.items
+            : [];
+
+
+    const statusClass =
+        getStatusClass(status);
+
+
+    const statusIcon =
+        getStatusIcon(status);
+
+
+    const cancelAllowed =
+        canCancelOrder(order);
+
+
+    return `
+
+        <article
+            class="order-card"
+            style="
+                animation-delay:${index * 0.05}s;
+            "
+        >
+
+            <div class="order-top">
+
+                <div>
+
+                    <div class="order-number">
+
+                        <i
+                            class="bi bi-receipt me-1"
+                            style="color:#00d9ff;"
+                        ></i>
+
+                        คำสั่งซื้อ
+
+                        <span>
+                            ${escapeHTML(orderId)}
+                        </span>
+
+                    </div>
+
+
+                    <div class="order-date">
+
+                        <i class="bi bi-calendar3 me-1"></i>
+
+                        ${formatDate(
+                            order.createdAt ||
+                            order.date
+                        )}
+
+                    </div>
+
+                </div>
+
+
+                <div>
+
+                    <span
+                        class="
+                            status-badge
+                            ${statusClass}
+                        "
+                    >
+
+                        <i
+                            class="
+                                bi
+                                ${statusIcon}
+                            "
+                        ></i>
+
+                        ${escapeHTML(status)}
+
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="order-items">
+
+                ${renderOrderItems(items)}
+
+            </div>
+
+
+            <div class="order-bottom">
+
+                <div>
+
+                    <div class="total-label">
+                        ยอดรวมคำสั่งซื้อ
+                    </div>
+
+                    <div class="total-price">
+
+                        <span>
+                            ฿
+                        </span>
+
+                        ${formatPrice(total)}
+
+                    </div>
+
+                </div>
+
+
+                ${
+                    cancelAllowed
+                    ?
+                    `
+                    <button
+                        type="button"
+                        class="cancel-btn"
+                        onclick="
+                            openCancelModal(
+                                '${escapeHTML(orderId)}'
+                            )
+                        "
+                    >
+                        <i class="bi bi-x-circle me-1"></i>
+                        ยกเลิกคำสั่งซื้อ
+                    </button>
+                    `
+                    :
+                    ""
+                }
+
+            </div>
+
+        </article>
+
+    `;
+
+}
+
+
+/* =====================================================
+   UPDATE SUMMARY
+===================================================== */
+
+function updateSummary(orders) {
+
+    const totalOrders =
+        document.getElementById(
+            "totalMyOrders"
+        );
+
+    const totalSpent =
+        document.getElementById(
+            "totalMySpent"
+        );
+
+    const shippingOrders =
+        document.getElementById(
+            "shippingMyOrders"
+        );
+
+
+    totalOrders.textContent =
+        orders.length;
+
+
+    const spent =
+        orders
+            .filter(order => {
+
+                const status =
+                    order.shippingStatus ||
+                    order.status ||
+                    "";
+
+                return status !==
+                    "ยกเลิกคำสั่งซื้อ";
+
+            })
+            .reduce(
+                (sum, order) => {
+
+                    return sum +
+                        Number(
+                            order.total ||
+                            order.grandTotal ||
+                            0
+                        );
+
+                },
+                0
+            );
+
+
+    totalSpent.textContent =
+        "฿" + formatPrice(spent);
+
+
+    const shipping =
+        orders.filter(order => {
+
+            const status =
+                order.shippingStatus ||
+                order.status ||
+                "";
+
+            return (
+                status === "กำลังจัดส่ง"
+            );
+
+        }).length;
+
+
+    shippingOrders.textContent =
+        shipping;
+
+}
+
+
+/* =====================================================
+   OPEN CANCEL MODAL
+===================================================== */
+
+function openCancelModal(orderId) {
+
+    const currentMember =
+        getCurrentMember();
+
+    if (!currentMember) {
+
+        window.location.href =
+            "login.html";
+
+        return;
+    }
+
+
+    const orders =
+        getMyOrders();
+
+
+    const order =
+        orders.find(item => {
+
+            return String(
+                item.orderId ||
+                item.id ||
+                ""
+            ) === String(orderId)
+
+            &&
+            String(
+                item.memberId || ""
+            ) === String(
+                currentMember.id || ""
+            );
+
+        });
+
+
+    if (!order) {
+
+        alert(
+            "ไม่พบคำสั่งซื้อของคุณ"
+        );
+
+        return;
+    }
+
+
+    if (!canCancelOrder(order)) {
+
+        alert(
+            "คำสั่งซื้อนี้ไม่สามารถยกเลิกได้แล้ว"
+        );
+
+        return;
+    }
+
+
+    selectedCancelOrderId =
+        orderId;
+
+
+    document.getElementById(
+        "cancelOrderNumber"
+    ).textContent =
+        orderId;
+
+
+    const modal =
+        new bootstrap.Modal(
+            document.getElementById(
+                "cancelOrderModal"
+            )
+        );
+
+
+    modal.show();
+
+}
+
+
+/* =====================================================
+   CONFIRM CANCEL
+===================================================== */
+
+function confirmCancelOrder() {
+
+    if (!selectedCancelOrderId) {
+        return;
+    }
+
+
+    const currentMember =
+        getCurrentMember();
+
+
+    if (!currentMember) {
+
+        window.location.href =
+            "login.html";
+
+        return;
+    }
+
+
+    const orders =
+        getMyOrders();
+
+
+    const index =
+        orders.findIndex(order => {
+
+            return String(
+                order.orderId ||
+                order.id ||
+                ""
+            ) === String(
+                selectedCancelOrderId
+            )
+
+            &&
+
+            String(
+                order.memberId || ""
+            ) === String(
+                currentMember.id || ""
+            );
+
+        });
+
+
+    if (index === -1) {
+
+        alert(
+            "ไม่พบคำสั่งซื้อของคุณ"
+        );
+
+        return;
+    }
+
+
+    const order =
+        orders[index];
+
+
+    if (!canCancelOrder(order)) {
+
+        alert(
+            "คำสั่งซื้อนี้ไม่สามารถยกเลิกได้แล้ว"
+        );
+
+        return;
+    }
+
+
+    /*
+       เปลี่ยนสถานะคำสั่งซื้อ
+    */
+
+    order.status =
+        "ยกเลิกคำสั่งซื้อ";
+
+    order.shippingStatus =
+        "ยกเลิกคำสั่งซื้อ";
+
+
+    order.cancelledAt =
+        new Date().toISOString();
+
+
+    order.cancelledBy =
+        "member";
+
+
+    order.cancelledByMemberId =
+        currentMember.id;
+
+
+    saveMyOrders(orders);
+
+
+    /*
+       ปิด Modal
+    */
+
+    const modalElement =
+        document.getElementById(
+            "cancelOrderModal"
+        );
+
+
+    const modal =
+        bootstrap.Modal.getInstance(
+            modalElement
+        );
+
+
+    if (modal) {
+        modal.hide();
+    }
+
+
+    selectedCancelOrderId =
+        null;
+
+
+    /*
+       โหลดรายการใหม่
+    */
+
+    renderMyOrders();
+
+
+    alert(
+        "ยกเลิกคำสั่งซื้อเรียบร้อยแล้ว"
+    );
+
+}
+
+
+/* =====================================================
+   SET MEMBER NAME
+===================================================== */
+
+function setMemberName() {
+
+    const member =
+        getCurrentMember();
+
+    const element =
+        document.getElementById(
+            "memberNameDisplay"
+        );
+
+
+    if (!element) {
+        return;
+    }
+
+
+    if (member) {
+
+        element.textContent =
+            member.name ||
+            member.username ||
+            "สมาชิก";
+
+    } else {
+
+        element.textContent =
+            "ยังไม่ได้เข้าสู่ระบบ";
+
+    }
+
+}
+
+
+/* =====================================================
+   AUTH CHECK
+===================================================== */
+
+function checkMemberAccess() {
+
+    const member =
+        getCurrentMember();
+
+
+    /*
+       ถ้าไม่มีสมาชิก
+       ไม่บังคับ redirect ทันที
+       แต่จะแสดงปุ่ม Login
+    */
+
+    if (!member) {
+
+        console.log(
+            "NeonGear: Guest mode"
+        );
+
+        return;
+    }
+
+
+    /*
+       ถ้าเป็น Admin
+       ให้ใช้หน้า Admin Orders แทน
+    */
+
+    if (
+        member.role === "admin" ||
+        member.username === "admin"
+    ) {
+
+        console.log(
+            "NeonGear: Admin viewing member order page"
+        );
+
+    }
+
+}
+
+
+/* =====================================================
+   EVENT
+===================================================== */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function () {
+
+        checkMemberAccess();
+
+        setMemberName();
+
+        renderMyOrders();
+
+
+        const confirmButton =
+            document.getElementById(
+                "confirmCancelBtn"
+            );
+
+
+        if (confirmButton) {
+
+            confirmButton.addEventListener(
+                "click",
+                confirmCancelOrder
+            );
+
+        }
+
+    }
+);
+
+</script>
+
+</body>
+</html>

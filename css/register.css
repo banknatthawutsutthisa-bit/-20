@@ -1,0 +1,876 @@
+
+        /* =====================================================
+           ROOT
+        ====================================================== */
+
+        :root {
+            --ng-blue: #00c6ff;
+            --ng-cyan: #00eaff;
+            --ng-purple: #7b2cff;
+            --ng-violet: #b44cff;
+            --ng-black: #050505;
+            --ng-dark: #0b0b12;
+        }
+
+
+        /* =====================================================
+           BODY
+        ====================================================== */
+
+        body {
+
+            min-height: 100vh;
+
+            background:
+                radial-gradient(
+                    circle at 15% 20%,
+                    rgba(0,198,255,.14),
+                    transparent 30%
+                ),
+
+                radial-gradient(
+                    circle at 85% 25%,
+                    rgba(123,44,255,.15),
+                    transparent 30%
+                ),
+
+                radial-gradient(
+                    circle at 50% 100%,
+                    rgba(0,234,255,.08),
+                    transparent 35%
+                ),
+
+                #050509;
+
+            color: white;
+
+            overflow-x: hidden;
+        }
+
+
+        /* =====================================================
+           BACKGROUND GRID
+        ====================================================== */
+
+        body::before {
+
+            content: "";
+
+            position: fixed;
+
+            inset: 0;
+
+            pointer-events: none;
+
+            background-image:
+                linear-gradient(
+                    rgba(255,255,255,.025) 1px,
+                    transparent 1px
+                ),
+                linear-gradient(
+                    90deg,
+                    rgba(255,255,255,.025) 1px,
+                    transparent 1px
+                );
+
+            background-size: 45px 45px;
+
+            mask-image:
+                linear-gradient(
+                    to bottom,
+                    black,
+                    transparent 90%
+                );
+
+            z-index: -1;
+        }
+
+
+        /* =====================================================
+           NAVBAR
+        ====================================================== */
+
+        .ng-register-navbar {
+
+            background:
+                rgba(5,5,10,.82) !important;
+
+            backdrop-filter: blur(18px);
+
+            -webkit-backdrop-filter: blur(18px);
+
+            border-bottom:
+                1px solid
+                rgba(255,255,255,.08);
+
+            box-shadow:
+                0 10px 35px
+                rgba(0,0,0,.25);
+        }
+
+
+        .ng-register-navbar .navbar-brand {
+
+            font-size: 22px;
+
+            letter-spacing: 1px;
+
+            color: white !important;
+
+            transition: .3s;
+        }
+
+
+        .ng-register-navbar .navbar-brand i {
+
+            color: var(--ng-cyan);
+
+            filter:
+                drop-shadow(
+                    0 0 8px
+                    rgba(0,234,255,.7)
+                );
+        }
+
+
+        .ng-register-navbar .navbar-brand:hover {
+
+            transform: translateY(-1px);
+
+            text-shadow:
+                0 0 15px
+                rgba(0,198,255,.6);
+        }
+
+
+        .ng-register-navbar .nav-link {
+
+            color: rgba(255,255,255,.7) !important;
+
+            transition: .3s;
+
+            font-weight: 600;
+        }
+
+
+        .ng-register-navbar .nav-link:hover {
+
+            color: white !important;
+
+            text-shadow:
+                0 0 12px
+                rgba(0,198,255,.7);
+        }
+
+
+        /* =====================================================
+           REGISTER AREA
+        ====================================================== */
+
+        .register-page {
+
+            min-height:
+                calc(100vh - 73px);
+
+            display: flex;
+
+            align-items: center;
+
+            padding:
+                55px 0 70px;
+
+            position: relative;
+        }
+
+
+        /* =====================================================
+           GLOW ORBS
+        ====================================================== */
+
+        .register-page::before {
+
+            content: "";
+
+            position: absolute;
+
+            width: 280px;
+
+            height: 280px;
+
+            border-radius: 50%;
+
+            background:
+                var(--ng-blue);
+
+            filter: blur(130px);
+
+            opacity: .12;
+
+            left: -100px;
+
+            top: 100px;
+
+            pointer-events: none;
+        }
+
+
+        .register-page::after {
+
+            content: "";
+
+            position: absolute;
+
+            width: 300px;
+
+            height: 300px;
+
+            border-radius: 50%;
+
+            background:
+                var(--ng-purple);
+
+            filter: blur(140px);
+
+            opacity: .14;
+
+            right: -100px;
+
+            bottom: 80px;
+
+            pointer-events: none;
+        }
+
+
+        /* =====================================================
+           REGISTER CARD
+        ====================================================== */
+
+        .register-card {
+
+            position: relative;
+
+            overflow: hidden;
+
+            border-radius: 30px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(18,18,28,.96),
+                    rgba(7,7,12,.97)
+                );
+
+            border:
+                1px solid
+                rgba(255,255,255,.10);
+
+            box-shadow:
+                0 35px 100px
+                rgba(0,0,0,.55),
+
+                0 0 60px
+                rgba(0,198,255,.07);
+
+            transition:
+                transform .4s ease,
+                box-shadow .4s ease;
+        }
+
+
+        .register-card:hover {
+
+            transform:
+                translateY(-4px);
+
+            box-shadow:
+                0 40px 110px
+                rgba(0,0,0,.65),
+
+                0 0 80px
+                rgba(0,198,255,.11);
+        }
+
+
+        /* =====================================================
+           CARD LIGHT
+        ====================================================== */
+
+        .register-card::before {
+
+            content: "";
+
+            position: absolute;
+
+            width: 320px;
+
+            height: 320px;
+
+            border-radius: 50%;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    var(--ng-blue),
+                    var(--ng-purple)
+                );
+
+            filter: blur(110px);
+
+            opacity: .12;
+
+            right: -130px;
+
+            top: -150px;
+
+            pointer-events: none;
+        }
+
+
+        .register-card::after {
+
+            content: "";
+
+            position: absolute;
+
+            width: 260px;
+
+            height: 260px;
+
+            border-radius: 50%;
+
+            background:
+                var(--ng-blue);
+
+            filter: blur(120px);
+
+            opacity: .07;
+
+            left: -130px;
+
+            bottom: -120px;
+
+            pointer-events: none;
+        }
+
+
+        /* =====================================================
+           CARD CONTENT
+        ====================================================== */
+
+        .register-card-body {
+
+            position: relative;
+
+            z-index: 2;
+
+            padding:
+                42px 42px 36px;
+        }
+
+
+        /* =====================================================
+           LOGO
+        ====================================================== */
+
+        .register-logo {
+
+            width: 78px;
+
+            height: 78px;
+
+            margin: 0 auto 20px;
+
+            border-radius: 23px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-size: 36px;
+
+            color: white;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #00c6ff,
+                    #5865f2,
+                    #8b2cff
+                );
+
+            box-shadow:
+                0 0 30px
+                rgba(0,198,255,.35),
+
+                0 0 60px
+                rgba(123,44,255,.18);
+
+            animation:
+                logoPulse 3s ease-in-out infinite;
+        }
+
+
+        @keyframes logoPulse {
+
+            0%,
+            100% {
+
+                transform:
+                    translateY(0);
+
+                box-shadow:
+                    0 0 30px
+                    rgba(0,198,255,.30);
+            }
+
+            50% {
+
+                transform:
+                    translateY(-5px);
+
+                box-shadow:
+                    0 0 45px
+                    rgba(123,44,255,.45);
+            }
+        }
+
+
+        /* =====================================================
+           TITLE
+        ====================================================== */
+
+        .register-title {
+
+            font-size: 34px;
+
+            font-weight: 900;
+
+            margin-bottom: 8px;
+
+            color: white;
+        }
+
+
+        .register-title span {
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #00c6ff,
+                    #8b5cf6,
+                    #c04cff
+                );
+
+            -webkit-background-clip: text;
+
+            -webkit-text-fill-color: transparent;
+        }
+
+
+        .register-subtitle {
+
+            color:
+                rgba(255,255,255,.55);
+
+            margin-bottom: 30px;
+        }
+
+
+        /* =====================================================
+           FORM LABEL
+        ====================================================== */
+
+        .register-card .form-label {
+
+            color:
+                rgba(255,255,255,.85);
+
+            font-size: 14px;
+
+            margin-bottom: 8px;
+        }
+
+
+        .register-card .form-label i {
+
+            color:
+                var(--ng-cyan);
+
+            margin-right: 5px;
+
+            filter:
+                drop-shadow(
+                    0 0 5px
+                    rgba(0,234,255,.5)
+                );
+        }
+
+
+        /* =====================================================
+           INPUT
+        ====================================================== */
+
+        .register-card .form-control {
+
+            min-height: 52px;
+
+            color: white;
+
+            background:
+                rgba(255,255,255,.055);
+
+            border:
+                1px solid
+                rgba(255,255,255,.12);
+
+            border-radius: 14px;
+
+            padding:
+                12px 15px;
+
+            transition:
+                border-color .25s,
+                box-shadow .25s,
+                background .25s;
+        }
+
+
+        .register-card .form-control::placeholder {
+
+            color:
+                rgba(255,255,255,.30);
+        }
+
+
+        .register-card .form-control:focus {
+
+            color: white;
+
+            background:
+                rgba(255,255,255,.075);
+
+            border-color:
+                var(--ng-blue);
+
+            box-shadow:
+                0 0 0 3px
+                rgba(0,198,255,.10),
+
+                0 0 22px
+                rgba(0,198,255,.10);
+
+            outline: none;
+        }
+
+
+        /* =====================================================
+           INPUT GROUP
+        ====================================================== */
+
+        .register-card .input-group
+        .form-control {
+
+            border-radius:
+                14px 0 0 14px;
+        }
+
+
+        .register-card
+        .input-group
+        .btn {
+
+            min-width: 55px;
+
+            border-radius:
+                0 14px 14px 0;
+
+            background:
+                rgba(255,255,255,.05);
+
+            border:
+                1px solid
+                rgba(255,255,255,.12);
+
+            color:
+                rgba(255,255,255,.75);
+
+            transition: .25s;
+        }
+
+
+        .register-card
+        .input-group
+        .btn:hover {
+
+            color: white;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(0,198,255,.18),
+                    rgba(123,44,255,.18)
+                );
+
+            border-color:
+                rgba(0,198,255,.5);
+        }
+
+
+        /* =====================================================
+           HELP TEXT
+        ====================================================== */
+
+        .register-card .form-text {
+
+            color:
+                rgba(255,255,255,.38);
+
+            font-size: 12px;
+
+            margin-top: 7px;
+        }
+
+
+        /* =====================================================
+           SUBMIT BUTTON
+        ====================================================== */
+
+        .register-submit {
+
+            position: relative;
+
+            overflow: hidden;
+
+            min-height: 55px;
+
+            border: none;
+
+            border-radius: 15px;
+
+            color: white;
+
+            font-weight: 800;
+
+            letter-spacing: .3px;
+
+            background:
+                linear-gradient(
+                    100deg,
+                    #00aeea,
+                    #5865f2,
+                    #8b2cff
+                );
+
+            box-shadow:
+                0 12px 35px
+                rgba(0,198,255,.22),
+
+                0 0 25px
+                rgba(123,44,255,.12);
+
+            transition:
+                transform .25s,
+                box-shadow .25s;
+        }
+
+
+        .register-submit::before {
+
+            content: "";
+
+            position: absolute;
+
+            top: 0;
+
+            left: -100%;
+
+            width: 60%;
+
+            height: 100%;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    transparent,
+                    rgba(255,255,255,.25),
+                    transparent
+                );
+
+            transform:
+                skewX(-20deg);
+
+            transition:
+                left .6s ease;
+        }
+
+
+        .register-submit:hover {
+
+            color: white;
+
+            transform:
+                translateY(-3px);
+
+            box-shadow:
+                0 17px 45px
+                rgba(0,198,255,.30),
+
+                0 0 35px
+                rgba(123,44,255,.20);
+        }
+
+
+        .register-submit:hover::before {
+
+            left: 130%;
+        }
+
+
+        .register-submit:active {
+
+            transform:
+                translateY(0);
+        }
+
+
+        /* =====================================================
+           LOGIN LINK
+        ====================================================== */
+
+        .register-login-text {
+
+            color:
+                rgba(255,255,255,.45);
+        }
+
+
+        .register-login-link {
+
+            color:
+                var(--ng-cyan);
+
+            font-weight: 800;
+
+            text-decoration: none;
+
+            transition: .25s;
+        }
+
+
+        .register-login-link:hover {
+
+            color: white;
+
+            text-shadow:
+                0 0 12px
+                rgba(0,234,255,.7);
+        }
+
+
+        /* =====================================================
+           SECURITY BADGE
+        ====================================================== */
+
+        .register-security {
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            gap: 7px;
+
+            margin-top: 22px;
+
+            color:
+                rgba(255,255,255,.35);
+
+            font-size: 12px;
+        }
+
+
+        .register-security i {
+
+            color:
+                #22c55e;
+
+            filter:
+                drop-shadow(
+                    0 0 5px
+                    rgba(34,197,94,.5)
+                );
+        }
+
+
+        /* =====================================================
+           FOOTER
+        ====================================================== */
+
+        .register-footer {
+
+            border-top:
+                1px solid
+                rgba(255,255,255,.07);
+
+            color:
+                rgba(255,255,255,.35);
+
+            background:
+                rgba(0,0,0,.25);
+        }
+
+
+        /* =====================================================
+           MOBILE
+        ====================================================== */
+
+        @media (max-width: 576px) {
+
+            .register-page {
+
+                padding:
+                    30px 12px 50px;
+            }
+
+
+            .register-card {
+
+                border-radius: 24px;
+            }
+
+
+            .register-card-body {
+
+                padding:
+                    32px 22px 28px;
+            }
+
+
+            .register-logo {
+
+                width: 68px;
+
+                height: 68px;
+
+                font-size: 31px;
+            }
+
+
+            .register-title {
+
+                font-size: 29px;
+            }
+
+
+            .register-subtitle {
+
+                font-size: 14px;
+
+                margin-bottom: 24px;
+            }
+
+        }
+

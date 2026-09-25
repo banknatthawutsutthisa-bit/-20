@@ -1,0 +1,764 @@
+/* =========================================================
+   NEONGEAR — PREMIUM CYBER MEMBER PAGE
+   THEME: BLACK / WHITE / CYAN / ELECTRIC PURPLE
+========================================================= */
+
+:root {
+    --ng-black: #050505;
+    --ng-dark: #0b0b0f;
+    --ng-dark-2: #12121a;
+    --ng-white: #ffffff;
+    --ng-cyan: #00c6ff;
+    --ng-blue: #1677ff;
+    --ng-purple: #7b2cff;
+    --ng-purple-light: #a855f7;
+    --ng-border: rgba(0, 198, 255, 0.14);
+    --ng-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
+}
+
+
+/* =========================================================
+   BODY
+========================================================= */
+
+body {
+    background:
+        radial-gradient(
+            circle at 5% 5%,
+            rgba(0, 198, 255, 0.09),
+            transparent 25%
+        ),
+        radial-gradient(
+            circle at 95% 10%,
+            rgba(123, 44, 255, 0.10),
+            transparent 28%
+        ),
+        radial-gradient(
+            circle at 50% 100%,
+            rgba(22, 119, 255, 0.06),
+            transparent 30%
+        ),
+        #f5f7fb;
+
+    color: #111;
+}
+
+
+/* =========================================================
+   NAVBAR
+========================================================= */
+
+#navbarMemberArea {
+    min-width: 205px;
+}
+
+#navbarMemberArea .dropdown-menu {
+    border: 1px solid rgba(0, 198, 255, 0.12);
+    border-radius: 18px;
+    padding: 8px;
+    min-width: 250px;
+
+    background:
+        rgba(255, 255, 255, 0.96);
+
+    backdrop-filter: blur(18px);
+
+    box-shadow:
+        0 20px 60px rgba(0, 0, 0, 0.14),
+        0 0 30px rgba(0, 198, 255, 0.05);
+
+    animation:
+        memberDropDown 0.22s ease;
+}
+
+#navbarMemberArea .dropdown-item {
+    border-radius: 12px;
+    padding: 11px 14px;
+
+    font-weight: 600;
+
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease,
+        color 0.2s ease;
+}
+
+#navbarMemberArea .dropdown-item:hover {
+    background:
+        linear-gradient(
+            135deg,
+            rgba(0, 198, 255, 0.10),
+            rgba(123, 44, 255, 0.08)
+        );
+
+    color: #111;
+
+    transform:
+        translateX(3px);
+}
+
+@keyframes memberDropDown {
+
+    from {
+        opacity: 0;
+        transform: translateY(-8px) scale(0.98);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+
+/* =========================================================
+   MEMBER HEADER
+========================================================= */
+
+.member-header-card {
+
+    background:
+        linear-gradient(
+            135deg,
+            #030303 0%,
+            #090b12 45%,
+            #11101c 100%
+        );
+
+    color: white;
+
+    border-radius: 30px;
+
+    overflow: hidden;
+
+    position: relative;
+
+    border:
+        1px solid rgba(255, 255, 255, 0.08);
+
+    box-shadow:
+        0 25px 70px rgba(0, 0, 0, 0.22);
+
+    isolation: isolate;
+
+    animation:
+        memberCardIn 0.7s ease both;
+}
+
+
+/* CYBER LIGHT */
+
+.member-header-card::before {
+
+    content: "";
+
+    position: absolute;
+
+    width: 420px;
+    height: 420px;
+
+    border-radius: 50%;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--ng-cyan),
+            var(--ng-purple)
+        );
+
+    filter:
+        blur(110px);
+
+    opacity: 0.24;
+
+    right: -150px;
+    top: -220px;
+
+    pointer-events: none;
+
+    animation:
+        cyberGlow 6s ease-in-out infinite alternate;
+}
+
+
+/* SECOND LIGHT */
+
+.member-header-card::after {
+
+    content: "";
+
+    position: absolute;
+
+    width: 260px;
+    height: 260px;
+
+    border-radius: 50%;
+
+    background:
+        var(--ng-cyan);
+
+    filter:
+        blur(120px);
+
+    opacity: 0.10;
+
+    left: -100px;
+    bottom: -140px;
+
+    pointer-events: none;
+}
+
+
+.member-header-content {
+
+    position: relative;
+
+    z-index: 2;
+}
+
+
+@keyframes cyberGlow {
+
+    0% {
+        transform:
+            translate(0, 0)
+            scale(1);
+    }
+
+    100% {
+        transform:
+            translate(-25px, 20px)
+            scale(1.08);
+    }
+}
+
+
+@keyframes memberCardIn {
+
+    from {
+        opacity: 0;
+        transform:
+            translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform:
+            translateY(0);
+    }
+}
+
+
+/* =========================================================
+   AVATAR
+========================================================= */
+
+#memberAvatar {
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--ng-cyan) 0%,
+            var(--ng-blue) 45%,
+            var(--ng-purple) 100%
+        ) !important;
+
+    border:
+        4px solid rgba(255, 255, 255, 0.18);
+
+    box-shadow:
+        0 0 0 6px rgba(0, 198, 255, 0.05),
+        0 0 35px rgba(0, 198, 255, 0.28),
+        0 0 70px rgba(123, 44, 255, 0.12);
+
+    animation:
+        avatarFloat 4s ease-in-out infinite;
+}
+
+
+@keyframes avatarFloat {
+
+    0%,
+    100% {
+        transform:
+            translateY(0);
+    }
+
+    50% {
+        transform:
+            translateY(-5px);
+    }
+}
+
+
+/* =========================================================
+   STAT CARDS
+========================================================= */
+
+.member-stat-card {
+
+    position: relative;
+
+    border:
+        1px solid rgba(0, 0, 0, 0.05);
+
+    border-radius: 24px;
+
+    background:
+        rgba(255, 255, 255, 0.92);
+
+    box-shadow:
+        0 12px 35px rgba(0, 0, 0, 0.055);
+
+    overflow: hidden;
+
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease,
+        border-color 0.3s ease;
+}
+
+
+.member-stat-card::before {
+
+    content: "";
+
+    position: absolute;
+
+    width: 100px;
+    height: 100px;
+
+    border-radius: 50%;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--ng-cyan),
+            var(--ng-purple)
+        );
+
+    filter:
+        blur(55px);
+
+    opacity: 0;
+
+    right: -30px;
+    top: -40px;
+
+    transition:
+        opacity 0.3s ease;
+}
+
+
+.member-stat-card:hover {
+
+    transform:
+        translateY(-7px);
+
+    border-color:
+        rgba(0, 198, 255, 0.18);
+
+    box-shadow:
+        0 22px 55px rgba(0, 0, 0, 0.10),
+        0 0 35px rgba(0, 198, 255, 0.05);
+}
+
+
+.member-stat-card:hover::before {
+    opacity: 0.16;
+}
+
+
+/* =========================================================
+   STAT ICON
+========================================================= */
+
+.member-stat-icon {
+
+    width: 58px;
+    height: 58px;
+
+    border-radius: 18px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    font-size: 25px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(0, 198, 255, 0.12),
+            rgba(123, 44, 255, 0.13)
+        );
+
+    color: var(--ng-purple);
+
+    border:
+        1px solid rgba(0, 198, 255, 0.10);
+
+    box-shadow:
+        inset 0 0 20px rgba(0, 198, 255, 0.04);
+
+    transition:
+        transform 0.3s ease;
+}
+
+
+.member-stat-card:hover
+.member-stat-icon {
+
+    transform:
+        rotate(-4deg)
+        scale(1.08);
+}
+
+
+/* =========================================================
+   PROFILE CARD
+========================================================= */
+
+.member-section-card {
+
+    border:
+        1px solid rgba(0, 0, 0, 0.045);
+
+    border-radius: 24px;
+
+    background:
+        rgba(255, 255, 255, 0.94);
+
+    box-shadow:
+        var(--ng-shadow);
+
+    overflow: hidden;
+
+    transition:
+        box-shadow 0.3s ease,
+        transform 0.3s ease;
+}
+
+
+.member-section-card:hover {
+
+    box-shadow:
+        0 25px 70px rgba(0, 0, 0, 0.09);
+}
+
+
+/* =========================================================
+   PROFILE BOX
+========================================================= */
+
+.profile-box {
+
+    background:
+        linear-gradient(
+            135deg,
+            #f8faff,
+            #ffffff
+        );
+
+    border:
+        1px solid #e8edf5;
+
+    border-radius: 16px;
+
+    transition:
+        border-color 0.25s ease,
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+
+.profile-box:hover {
+
+    border-color:
+        rgba(0, 198, 255, 0.30);
+
+    transform:
+        translateY(-3px);
+
+    box-shadow:
+        0 10px 30px rgba(0, 198, 255, 0.07);
+}
+
+
+/* =========================================================
+   SECTION TITLE
+========================================================= */
+
+.member-section-title {
+
+    font-weight: 900;
+
+    color: #111;
+
+    letter-spacing: -0.3px;
+}
+
+
+.member-section-title i {
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--ng-cyan),
+            var(--ng-purple)
+        );
+
+    -webkit-background-clip: text;
+
+    -webkit-text-fill-color: transparent;
+
+    background-clip: text;
+}
+
+
+/* =========================================================
+   ORDER AREA
+========================================================= */
+
+#memberOrders {
+
+    min-height: 100px;
+
+    border-radius: 18px;
+}
+
+
+/* =========================================================
+   ORDER ITEMS
+========================================================= */
+
+#memberOrders .order-item,
+#memberOrders .card {
+
+    border:
+        1px solid #edf0f5;
+
+    border-radius: 18px;
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease,
+        border-color 0.25s ease;
+}
+
+
+#memberOrders .order-item:hover,
+#memberOrders .card:hover {
+
+    transform:
+        translateY(-3px);
+
+    border-color:
+        rgba(0, 198, 255, 0.20);
+
+    box-shadow:
+        0 15px 35px rgba(0, 0, 0, 0.07);
+}
+
+
+/* =========================================================
+   MEMBER BUTTON
+========================================================= */
+
+.member-btn {
+
+    border: 0;
+
+    border-radius: 50px;
+
+    font-weight: 800;
+
+    padding:
+        11px 22px;
+
+    color: white;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--ng-cyan),
+            var(--ng-blue),
+            var(--ng-purple)
+        );
+
+    box-shadow:
+        0 8px 25px rgba(0, 198, 255, 0.18);
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease,
+        filter 0.25s ease;
+}
+
+
+.member-btn:hover {
+
+    color: white;
+
+    transform:
+        translateY(-3px);
+
+    filter:
+        brightness(1.08);
+
+    box-shadow:
+        0 14px 35px rgba(123, 44, 255, 0.24);
+}
+
+
+.member-btn:active {
+
+    transform:
+        translateY(0)
+        scale(0.98);
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+.member-footer {
+
+    background:
+        rgba(255, 255, 255, 0.88);
+
+    border-top:
+        1px solid rgba(0, 0, 0, 0.06);
+
+    backdrop-filter:
+        blur(12px);
+}
+
+
+/* =========================================================
+   SCROLLBAR
+========================================================= */
+
+::-webkit-scrollbar {
+
+    width: 9px;
+}
+
+
+::-webkit-scrollbar-track {
+
+    background:
+        #f1f3f7;
+}
+
+
+::-webkit-scrollbar-thumb {
+
+    background:
+        linear-gradient(
+            180deg,
+            var(--ng-cyan),
+            var(--ng-purple)
+        );
+
+    border-radius: 20px;
+}
+
+
+::-webkit-scrollbar-thumb:hover {
+
+    background:
+        linear-gradient(
+            180deg,
+            var(--ng-blue),
+            var(--ng-purple)
+        );
+}
+
+
+/* =========================================================
+   SELECTION
+========================================================= */
+
+::selection {
+
+    background:
+        rgba(0, 198, 255, 0.22);
+
+    color:
+        #111;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 768px) {
+
+    #navbarMemberArea {
+
+        margin-top: 12px;
+
+        min-width: 0;
+    }
+
+
+    .member-header-card {
+
+        border-radius: 22px;
+    }
+
+
+    .member-header-content {
+
+        text-align: center;
+    }
+
+
+    .member-stat-card {
+
+        border-radius: 20px;
+    }
+
+
+    .member-section-card {
+
+        border-radius: 20px;
+    }
+}
+
+
+@media (max-width: 480px) {
+
+    .member-header-card {
+
+        border-radius: 18px;
+    }
+
+
+    #memberAvatar {
+
+        border-width: 3px;
+    }
+
+
+    .member-stat-icon {
+
+        width: 50px;
+        height: 50px;
+
+        border-radius: 15px;
+    }
+
+
+    .member-btn {
+
+        width: 100%;
+
+        padding:
+            10px 18px;
+    }
+}
