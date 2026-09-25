@@ -35,6 +35,114 @@
         href="css/style.css"
     >
 
+
+
+<style>
+/* =====================================================
+   NEONGEAR — STOCK ALERT
+===================================================== */
+
+.ng-stock-alert {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 7px 12px;
+    border-radius: 999px;
+    font-size: .82rem;
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: .2px;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    box-shadow: 0 0 14px rgba(0, 217, 255, .08);
+}
+
+.ng-stock-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    font-size: .72rem;
+    font-weight: 900;
+}
+
+.ng-stock-ok {
+    color: #9affdf;
+    background: linear-gradient(135deg, rgba(0, 95, 72, .94), rgba(0, 55, 48, .96));
+    border: 1px solid #20ffc0;
+    box-shadow: 0 0 12px rgba(0, 255, 190, .24), inset 0 0 10px rgba(0, 255, 190, .08);
+    text-shadow: 0 0 7px rgba(89, 255, 210, .45);
+}
+
+.ng-stock-ok .ng-stock-icon {
+    color: #00261d;
+    background: #32ffc8;
+    box-shadow: 0 0 10px rgba(50, 255, 200, .55);
+}
+
+.ng-stock-low {
+    color: #ffd08a;
+    background: linear-gradient(135deg, rgba(125, 55, 0, .96), rgba(75, 30, 0, .98));
+    border: 1px solid #ff9d24;
+    box-shadow: 0 0 14px rgba(255, 145, 0, .30), inset 0 0 10px rgba(255, 145, 0, .08);
+    text-shadow: 0 0 7px rgba(255, 179, 71, .45);
+    animation: ngStockPulse 1.8s ease-in-out infinite;
+}
+
+.ng-stock-low .ng-stock-icon {
+    color: #351500;
+    background: #ff9d24;
+    box-shadow: 0 0 10px rgba(255, 157, 36, .55);
+}
+
+.ng-stock-out {
+    color: #ff9ca9;
+    background: linear-gradient(135deg, rgba(125, 0, 20, .97), rgba(65, 0, 12, .99));
+    border: 1px solid #ff3655;
+    box-shadow: 0 0 16px rgba(255, 42, 74, .34), inset 0 0 12px rgba(255, 42, 74, .10);
+    text-shadow: 0 0 8px rgba(255, 82, 104, .50);
+}
+
+.ng-stock-out .ng-stock-icon {
+    color: #35000a;
+    background: #ff3655;
+    box-shadow: 0 0 11px rgba(255, 54, 85, .60);
+}
+
+.store-cart-btn:disabled {
+    cursor: not-allowed !important;
+    opacity: .48;
+    filter: grayscale(.55);
+}
+
+@keyframes ngStockPulse {
+    0%, 100% {
+        transform: scale(1);
+        box-shadow: 0 0 0 rgba(255, 145, 0, 0);
+    }
+    50% {
+        transform: scale(1.025);
+        box-shadow: 0 0 16px rgba(255, 145, 0, .18);
+    }
+}
+
+@media (max-width: 576px) {
+    .ng-stock-alert {
+        padding: 6px 9px;
+        gap: 5px;
+        font-size: .74rem;
+    }
+
+    .ng-stock-icon {
+        width: 18px;
+        height: 18px;
+        font-size: .65rem;
+    }
+}
+</style>
+
 </head>
 
 
@@ -1515,13 +1623,18 @@ function getStoreStock(product) {
         Number(product.stock);
 
 
+    /* ================================
+       สินค้าหมด
+    ================================ */
+
     if (
         !Number.isFinite(stock) ||
         stock <= 0
     ) {
 
         return `
-            <span class="badge bg-danger">
+            <span class="ng-stock-alert ng-stock-out">
+                <span class="ng-stock-icon">✕</span>
                 สินค้าหมด
             </span>
         `;
@@ -1529,19 +1642,29 @@ function getStoreStock(product) {
     }
 
 
+    /* ================================
+       ใกล้หมด 1–5 ชิ้น
+    ================================ */
+
     if (stock <= 5) {
 
         return `
-            <span class="badge bg-warning text-dark">
-                เหลือ ${stock} ชิ้น
+            <span class="ng-stock-alert ng-stock-low">
+                <span class="ng-stock-icon">!</span>
+                เหลือเพียง ${stock} ชิ้น
             </span>
         `;
 
     }
 
 
+    /* ================================
+       สต็อกปกติ
+    ================================ */
+
     return `
-        <span class="badge bg-success">
+        <span class="ng-stock-alert ng-stock-ok">
+            <span class="ng-stock-icon">✓</span>
             พร้อมส่ง
         </span>
     `;
